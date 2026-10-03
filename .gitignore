@@ -1,0 +1,89 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+#Agent stuff
+.agents/
+RULES.md 
+
+# Environment Variables & Secrets (CRITICAL)
+.env
+.env.*
+*.env
+
+# Logs
+*.log
+logs/
+dry_run*.log
+live_run*.log
+test_run*.log
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+pyrefly.toml
+BACKLOG.md
+
+# Exported tenant snapshots (Recommended to avoid committing private client/network data)
+zcc_export_*.yaml
+zcc_export_by_platform.yaml
+zia_export_*.yaml
+zdemo_*.yaml
+pov_preset_exported.yaml
+
+#Demo script
+demo_*.py
+demo_*.json
+
+
+
+#Scrach code or config
+scratch/
+configs/scratch/
+configs/customers/
+
+# Root-level log files
+dry_run.log
+live_run.log
+dry_run_test.log
+
+# Tenant export snapshots at root level
+zcc_export_snap-*.yaml
+zia_export_snap-*.yaml
+
+# PAC files exported at root level (use configs/scratch/ instead)
+pac_files/

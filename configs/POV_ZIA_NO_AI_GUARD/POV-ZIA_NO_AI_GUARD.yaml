@@ -1,0 +1,2128 @@
+version: '1.0'
+zcc:
+  forwarding_profiles:
+  - search_name: POV - MAC T2.0 - TLS
+    update:
+      name: POV - MAC T2.0 - TLS
+      active: '1'
+      condition_type: 1
+      enable_unified_tunnel: 0
+      enable_lwf_driver: '1'
+      enable_split_vpn_tn: 0
+      enable_all_default_adapters_tn: 0
+      skip_trusted_criteria_match: 0
+      predefined_trusted_networks: false
+      predefined_tn_all: false
+      forwarding_profile_actions:
+      - action_type: 1
+        enable_packet_tunnel: 1
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 1
+        drop_ipv6_traffic_in_ipv6_network: 1
+        primary_transport: 0
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 1
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 1
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 1
+        latency_based_zen_enablement: 1
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 1
+        system_proxy: 0
+      - action_type: 1
+        enable_packet_tunnel: 1
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 1
+        drop_ipv6_traffic_in_ipv6_network: 1
+        primary_transport: 0
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 1
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 1
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 1
+        latency_based_zen_enablement: 1
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 2
+        system_proxy: 0
+      - action_type: 1
+        enable_packet_tunnel: 1
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 1
+        drop_ipv6_traffic_in_ipv6_network: 1
+        primary_transport: 0
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 1
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 1
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 1
+        latency_based_zen_enablement: 1
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 0
+        system_proxy: 0
+      - action_type: 1
+        enable_packet_tunnel: 1
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 1
+        drop_ipv6_traffic_in_ipv6_network: 1
+        primary_transport: 0
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 1
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 1
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 1
+        latency_based_zen_enablement: 1
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 3
+        system_proxy: 0
+      forwarding_profile_zpa_actions:
+      - action_type: 1
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 1
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 1
+        network_type: 1
+        send_trusted_network_result_to_zpa: 0
+      - action_type: 1
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 1
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 1
+        network_type: 2
+        send_trusted_network_result_to_zpa: 0
+      - action_type: 1
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 1
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 1
+        network_type: 0
+        send_trusted_network_result_to_zpa: 0
+      - action_type: 1
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 1
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 1
+        network_type: 3
+        send_trusted_network_result_to_zpa: 0
+      unified_tunnel:
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 0
+        same_as_on_trusted: 0
+        action_type_zia: 1
+        action_type_zpa: 1
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 1
+        same_as_on_trusted: 0
+        action_type_zia: 0
+        action_type_zpa: 0
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 2
+        same_as_on_trusted: 1
+        action_type_zia: 1
+        action_type_zpa: 1
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 3
+        same_as_on_trusted: 1
+        action_type_zia: 1
+        action_type_zpa: 1
+  - search_name: POV - No Forwarding
+    update:
+      name: POV - No Forwarding
+      active: '1'
+      condition_type: 1
+      enable_unified_tunnel: 0
+      enable_lwf_driver: '1'
+      enable_split_vpn_tn: 0
+      enable_all_default_adapters_tn: 0
+      skip_trusted_criteria_match: 0
+      predefined_trusted_networks: false
+      predefined_tn_all: false
+      forwarding_profile_actions:
+      - action_type: 0
+        enable_packet_tunnel: 0
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        drop_ipv6_traffic_in_ipv6_network: 0
+        primary_transport: 1
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 0
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+        latency_based_zen_enablement: 0
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 1
+        system_proxy: 2
+      - action_type: 0
+        enable_packet_tunnel: 0
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        drop_ipv6_traffic_in_ipv6_network: 0
+        primary_transport: 1
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 0
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+        latency_based_zen_enablement: 0
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 2
+        system_proxy: 2
+      - action_type: 0
+        enable_packet_tunnel: 0
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        drop_ipv6_traffic_in_ipv6_network: 0
+        primary_transport: 1
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 0
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+        latency_based_zen_enablement: 0
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 0
+        system_proxy: 2
+      - action_type: 0
+        enable_packet_tunnel: 0
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        drop_ipv6_traffic_in_ipv6_network: 0
+        primary_transport: 1
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 0
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+        latency_based_zen_enablement: 0
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 3
+        system_proxy: 2
+      forwarding_profile_zpa_actions:
+      - action_type: 0
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 0
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 0
+        network_type: 1
+        send_trusted_network_result_to_zpa: 0
+      - action_type: 0
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 0
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 0
+        network_type: 2
+        send_trusted_network_result_to_zpa: 0
+      - action_type: 0
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 0
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 0
+        network_type: 0
+        send_trusted_network_result_to_zpa: 0
+      - action_type: 1
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 0
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 0
+        network_type: 3
+        send_trusted_network_result_to_zpa: 0
+      unified_tunnel:
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 0
+        same_as_on_trusted: 0
+        action_type_zia: 1
+        action_type_zpa: 1
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 1
+        same_as_on_trusted: 0
+        action_type_zia: 0
+        action_type_zpa: 0
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 2
+        same_as_on_trusted: 1
+        action_type_zia: 1
+        action_type_zpa: 1
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 3
+        same_as_on_trusted: 1
+        action_type_zia: 1
+        action_type_zpa: 1
+  - search_name: POV - WIN T2.0 - TLS
+    update:
+      name: POV - WIN T2.0 - TLS
+      active: '1'
+      condition_type: 1
+      enable_unified_tunnel: 0
+      enable_lwf_driver: '1'
+      enable_split_vpn_tn: 0
+      enable_all_default_adapters_tn: 0
+      skip_trusted_criteria_match: 0
+      predefined_trusted_networks: false
+      predefined_tn_all: false
+      forwarding_profile_actions:
+      - action_type: 1
+        enable_packet_tunnel: 1
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 1
+        drop_ipv6_traffic_in_ipv6_network: 1
+        primary_transport: 0
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 1
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 1
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 1
+        latency_based_zen_enablement: 1
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 1
+        system_proxy: 0
+      - action_type: 1
+        enable_packet_tunnel: 1
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 1
+        drop_ipv6_traffic_in_ipv6_network: 1
+        primary_transport: 0
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 1
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 1
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 1
+        latency_based_zen_enablement: 1
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 2
+        system_proxy: 0
+      - action_type: 1
+        enable_packet_tunnel: 1
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 1
+        drop_ipv6_traffic_in_ipv6_network: 1
+        primary_transport: 0
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 1
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 1
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 1
+        latency_based_zen_enablement: 1
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 0
+        system_proxy: 0
+      - action_type: 1
+        enable_packet_tunnel: 1
+        block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 1
+        drop_ipv6_traffic_in_ipv6_network: 1
+        primary_transport: 0
+        udp_timeout: 9
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        use_tunnel2_for_proxied_web_traffic: 1
+        use_tunnel2_for_unencrypted_web_traffic: 0
+        redirect_web_traffic: 1
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 1
+        latency_based_zen_enablement: 1
+        zen_probe_interval: 60
+        zen_probe_sample_size: 5
+        zen_threshold_limit: 2
+        network_type: 3
+        system_proxy: 0
+      forwarding_profile_zpa_actions:
+      - action_type: 1
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 1
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 1
+        network_type: 1
+        send_trusted_network_result_to_zpa: 0
+      - action_type: 1
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 1
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 1
+        network_type: 2
+        send_trusted_network_result_to_zpa: 0
+      - action_type: 1
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 1
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 1
+        network_type: 0
+        send_trusted_network_result_to_zpa: 0
+      - action_type: 1
+        primary_transport: 0
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        partner_info:
+          primary_transport: 0
+          mtu_for_zadapter: 0
+          allow_tls_fallback: 1
+        latency_based_server_enablement: 1
+        lbs_probe_sample_size: 5
+        lbs_threshold_limit: 1
+        lbs_probe_interval: 30
+        latency_based_server_mt_enablement: 1
+        network_type: 3
+        send_trusted_network_result_to_zpa: 0
+      unified_tunnel:
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 0
+        same_as_on_trusted: 0
+        action_type_zia: 1
+        action_type_zpa: 1
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 1
+        same_as_on_trusted: 0
+        action_type_zia: 0
+        action_type_zpa: 0
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 2
+        same_as_on_trusted: 1
+        action_type_zia: 1
+        action_type_zpa: 1
+      - block_unreachable_domains_traffic: 0
+        drop_ipv6_traffic: 0
+        primary_transport: 1
+        dtls_timeout: 9
+        tls_timeout: 5
+        mtu_for_zadapter: 0
+        allow_tls_fallback: 1
+        path_mtu_discovery: 1
+        tunnel2_fallback_type: 0
+        redirect_web_traffic: 0
+        drop_ipv6_include_traffic_in_t2: 0
+        system_proxy_data:
+          bypass_proxy_for_private_ip: 0
+          enable_auto_detect: 0
+          enable_pac: 0
+          enable_proxy_server: 0
+          perform_gp_update: 0
+          proxy_action: 0
+          proxy_server_port: '0'
+        network_type: 3
+        same_as_on_trusted: 1
+        action_type_zia: 1
+        action_type_zpa: 1
+  app_profiles:
+    windows:
+    - search_name: POV - No Forwarding
+      update:
+        name: POV - No Forwarding
+        device_type: windows
+        active: 1
+        rule_order: 1
+        log_mode: -1
+        log_level: 0
+        log_file_size: 100
+        reauth_period: '12'
+        reactivate_web_security_minutes: '0'
+        highlight_active_control: 0
+        send_disable_service_reason: 0
+        refresh_kerberos_token: 0
+        enable_device_groups: 0
+        notification_template_contract:
+          template_name: Legacy Notification Settings
+          default_template: '1'
+          enable_client_notification: '0'
+          enable_zia_notification: '0'
+          enable_app_updates_notification: '0'
+          enable_service_status_notification: '0'
+          enable_notification_for_z_p_a_reauth: '1'
+          zpa_reauth_notification_time: 5
+          custom_timer: 5
+          zia_notification_persistant: '0'
+          enable_persistant_notification: '0'
+          zia_firewall: '0'
+          zia_firewall_popup: '0'
+          zia_d_n_s: '0'
+          zia_d_n_s_popup: '0'
+          zia_i_p_s: '0'
+          zia_i_p_s_popup: '0'
+          do_not_disturb: '0'
+          show_device_posture_failure_notification: '0'
+        notification_template_id: 15203
+        policy_token: 32333938373A333A32666132316632612D373437662D343739382D396632612D353432303635356638363863
+        tunnel_zapp_traffic: 0
+        group_all: 0
+        policy_extension:
+          on_net_policy:
+            enable_lwf_driver: true
+          install_ssl_certs: 1
+          source_port_based_bypasses: 3389:*
+          packet_tunnel_exclude_list: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,224.0.0.0/4,255.255.255.255,169.254.0.0/16
+          packet_tunnel_include_list: 0.0.0.0/0
+          use_v8_js_engine: '1'
+          follow_routing_table: '1'
+          use_wsa_poll_for_zpa: '1'
+          use_default_adapter_for_dns: '1'
+          use_zscaler_notification_framework: '0'
+          switch_focus_to_notification: '0'
+          fallback_to_gateway_domain: '1'
+          enable_zcc_revert: '0'
+          zpa_auth_exp_on_sleep: 0
+          zpa_auth_exp_on_sys_restart: 0
+          zpa_auth_exp_on_net_ip_change: 0
+          instant_force_z_p_a_reauth_state_update: 0
+          zpa_auth_exp_on_win_logon_session: 0
+          zpa_auth_exp_on_win_session_lock: 0
+          zpa_auth_exp_session_lock_state_min_time_in_second: 0
+          packet_tunnel_exclude_list_for_ipv6: '[FF00::/8],[FE80::/10],[FC00::/7]'
+          enable_set_proxy_on_vpn_adapters: 1
+          disable_dns_route_exclusion: 0
+          advance_zpa_reauth: false
+          use_proxy_port_for_t1: '0'
+          use_proxy_port_for_t2: '0'
+          allow_pac_exclusions_only: '0'
+          intercept_zia_traffic_all_adapters: '0'
+          enable_anti_tampering: '0'
+          override_at_cmd_by_policy: '0'
+          reactivate_anti_tampering_time: 0
+          enforce_split_dns: 0
+          drop_quic_traffic: 0
+          enable_zdp_service: '0'
+          update_dns_search_order: 1
+          truncate_large_udpdns_response: 0
+          prioritize_dns_exclusions: 1
+          purge_kerberos_preferred_dc_cache: '0'
+          delete_dhcp_option121_routes: '{"trusted":1,"offTrusted":1,"vpnTrusted":1,"splitVpnTrusted":1}'
+          enable_location_policy_override: 0
+          enable_custom_theme: 0
+          location_ruleset_policies:
+            off_trusted: {}
+            trusted: {}
+            vpn_trusted: {}
+            split_vpn_trusted: {}
+          generate_cli_password_contract:
+            enable_cli: false
+            allow_zpa_disable_without_password: true
+            allow_zia_disable_without_password: true
+            allow_zdx_disable_without_password: true
+          zdx_lite_config_obj: '{"localMetrics":0,"endToEndDiagnostics":{"trusted":0,"vpnTrusted":0,"offTrusted":0,"splitVpnTrusted":0}}'
+          ddil_config: '{"ddilEnabled":0,"businessContinuityActivationDomain":"","businessContinuityTestModeEnabled":0}'
+          zcc_fail_close_settings_lockdown_on_tunnel_process_exit: 1
+          zcc_fail_close_settings_lockdown_on_firewall_error: 0
+          zcc_fail_close_settings_lockdown_on_driver_error: 0
+          zcc_fail_close_settings_thumb_print: A3MTIEvNcbTsB9MYmDFX+f8C1Oi+BkQzgpn6V8DC2Ro=
+          zcc_app_fail_open_policy: 0
+          zcc_tunnel_fail_policy: 0
+          follow_global_for_partner_login: '1'
+          user_allowed_to_add_partner: '0'
+          allow_client_cert_caching_for_web_view2: '0'
+          show_confirmation_dialog_for_cached_cert: '0'
+          enable_flow_based_tunnel: 0
+          enable_network_traffic_process_mapping: 0
+          enable_local_packet_capture: '1'
+          one_id_mt_device_auth_enabled: '0'
+          enable_custom_proxy_detection: '0'
+          prevent_auto_reauth_during_device_lock: '0'
+          use_end_point_location_for_dc_selection: '0'
+          enable_crash_reporting: 0
+          recache_system_proxy: '0'
+          enable_automatic_packet_capture: 0
+          enable_apc_for_critical_sections: 0
+          enable_apc_for_other_sections: 0
+          enable_pc_additional_space: 0
+          pc_additional_space: 0
+          client_connector_ui_language: 0
+          block_private_relay: '0'
+          bypass_dns_traffic_using_udp_proxy: 0
+          reconnect_tun_on_wakeup: 0
+        disaster_recovery:
+          enable_zia_dr: false
+          enable_zpa_dr: false
+          zia_dr_method: 0
+          use_zia_global_db: false
+          allow_zia_test: false
+          allow_zpa_test: false
+        app_service_ids:
+        - '3'
+        - '5'
+        app_services:
+        - active: true
+          app_data_blob:
+          - ipaddr: 52.112.0.0/14,52.122.0.0/15,42.159.34.32/27,42.159.34.64/27,42.159.34.96/28,42.159.162.32/27,42.159.162.64/27,42.159.162.96/28,159.27.160.0/21
+            port: 3478,3479,3480,3481
+          - ipaddr: 52.112.0.0/14,52.122.0.0/15,52.238.119.141/32,52.244.160.207/32,40.72.124.128/28,42.159.34.32/27,42.159.34.64/27,42.159.34.96/28,42.159.162.32/27,42.159.162.64/27,42.159.162.96/28,159.27.160.0/21
+            port: 443,80
+        - active: true
+          app_data_blob:
+          - ipaddr: 3.7.35.0/25 ,3.235.82.0/23 ,3.235.96.0/23 ,4.34.125.128/25 ,4.35.64.128/25
+              ,8.5.128.0/23 ,15.220.80.0/24 ,15.220.81.0/25 ,18.254.23.128/25 ,18.254.61.0/25
+              ,20.203.158.80/28 ,20.203.190.192/26 ,50.239.202.0/23 ,50.239.204.0/24
+              ,52.61.100.128/25 ,64.125.62.0/24 ,64.211.144.0/24 ,64.224.32.0/19 ,65.39.152.0/24
+              ,69.174.57.0/24 ,69.174.108.0/22 ,101.36.167.0/24 ,101.36.170.0/23 ,103.122.166.0/23
+              ,111.33.115.0/25 ,111.33.181.0/25 ,115.110.154.192/26 ,115.114.56.192/26
+              ,115.114.115.0/26 ,115.114.131.0/26 ,120.29.148.0/24 ,121.244.146.0/27
+              ,134.224.0.0/16 ,137.66.128.0/17 ,144.195.0.0/16 ,147.124.96.0/19 ,149.137.0.0/17
+              ,156.45.0.0/17 ,159.124.0.0/16 ,160.1.56.128/25 ,161.199.136.0/22 ,162.12.232.0/22
+              ,162.255.36.0/22 ,165.254.88.0/23 ,166.108.64.0/18 , 168.140.0.0/17,
+              170.114.0.0/16 ,173.231.80.0/20 ,192.204.12.0/22 ,198.251.128.0/17 ,202.177.207.128/27
+              ,203.200.219.128/27 ,204.80.104.0/21 ,204.141.28.0/22 ,206.247.0.0/16
+              ,207.226.132.0/24 ,209.9.211.0/24 ,209.9.215.0/24 ,213.19.144.0/24 ,213.19.153.0/24
+              ,213.244.140.0/24 ,221.122.63.0/24 ,221.122.64.0/24 ,221.122.88.64/27
+              ,221.122.88.128/25 ,221.122.89.128/25 ,221.123.139.192/27
+            port: 3478,3479,8801-8810
+          - ipaddr: 3.7.35.0/25 ,3.235.82.0/23 ,3.235.96.0/23 ,4.34.125.128/25 ,4.35.64.128/25
+              ,8.5.128.0/23 ,15.220.80.0/24 ,15.220.81.0/25 ,18.254.23.128/25 ,18.254.61.0/25
+              ,20.203.158.80/28 ,20.203.190.192/26 ,50.239.202.0/23 ,50.239.204.0/24
+              ,52.61.100.128/25 ,64.125.62.0/24 ,64.211.144.0/24 ,64.224.32.0/19 ,65.39.152.0/24
+              ,69.174.57.0/24 ,69.174.108.0/22 ,101.36.167.0/24 ,101.36.170.0/23 ,103.122.166.0/23
+              ,111.33.115.0/25 ,111.33.181.0/25 ,115.110.154.192/26 ,115.114.56.192/26
+              ,115.114.115.0/26 ,115.114.131.0/26 ,120.29.148.0/24 ,121.244.146.0/27
+              ,134.224.0.0/16 ,137.66.128.0/17 ,144.195.0.0/16 ,147.124.96.0/19 ,149.137.0.0/17
+              ,156.45.0.0/17 ,159.124.0.0/16 ,160.1.56.128/25 ,161.199.136.0/22 ,162.12.232.0/22
+              ,162.255.36.0/22 ,165.254.88.0/23 ,166.108.64.0/18 , 168.140.0.0/17,
+              170.114.0.0/16 ,173.231.80.0/20 ,192.204.12.0/22 ,198.251.128.0/17 ,202.177.207.128/27
+              ,203.200.219.128/27 ,204.80.104.0/21 ,204.141.28.0/22 ,206.247.0.0/16
+              ,207.226.132.0/24 ,209.9.211.0/24 ,209.9.215.0/24 ,213.19.144.0/24 ,213.19.153.0/24
+              ,213.244.140.0/24 ,221.122.63.0/24 ,221.122.64.0/24 ,221.122.88.64/27
+              ,221.122.88.128/25 ,221.122.89.128/25 ,221.123.139.192/27 ,52.84.151.0/24
+              ,170.114.45.0/24 ,170.114.46.0/24
+            port: 443,8801,8802
+        logout_password: Zscaler$ChangeMe3
+        disable_password: Zscaler$ChangeMe3
+        uninstall_password: Zscaler$ChangeMe3
+        forwarding_profile_name: POV - No Forwarding
+    - search_name: POV - T2.0 TLS
+      update:
+        name: POV - T2.0 TLS
+        device_type: windows
+        pac_url: POV_PAC
+        active: 1
+        rule_order: 2
+        log_mode: -1
+        log_level: 0
+        log_file_size: 100
+        reauth_period: '12'
+        reactivate_web_security_minutes: '0'
+        highlight_active_control: 0
+        send_disable_service_reason: 0
+        refresh_kerberos_token: 0
+        enable_device_groups: 0
+        notification_template_contract:
+          template_name: POV - Zscaler Notification
+          default_template: '0'
+          enable_client_notification: '1'
+          enable_zia_notification: '0'
+          enable_app_updates_notification: '1'
+          enable_service_status_notification: '0'
+          enable_notification_for_z_p_a_reauth: '1'
+          zpa_reauth_notification_time: 5
+          custom_timer: 5
+          zia_notification_persistant: '0'
+          enable_persistant_notification: '1'
+          zia_firewall: '0'
+          zia_firewall_popup: '0'
+          zia_d_n_s: '0'
+          zia_d_n_s_popup: '0'
+          zia_i_p_s: '0'
+          zia_i_p_s_popup: '0'
+          do_not_disturb: '0'
+          show_device_posture_failure_notification: '0'
+        notification_template_id: 15205
+        policy_token: 32333938373A333A32623665663136652D666537622D343632322D623564392D613437376430366537623132
+        tunnel_zapp_traffic: 0
+        group_all: 0
+        policy_extension:
+          on_net_policy:
+            enable_lwf_driver: true
+          install_ssl_certs: 1
+          source_port_based_bypasses: 3389:*
+          packet_tunnel_exclude_list: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,224.0.0.0/4,255.255.255.255,169.254.0.0/16
+          packet_tunnel_include_list: 0.0.0.0/0
+          use_v8_js_engine: '1'
+          follow_routing_table: '1'
+          use_wsa_poll_for_zpa: '1'
+          use_default_adapter_for_dns: '1'
+          use_zscaler_notification_framework: '0'
+          switch_focus_to_notification: '0'
+          fallback_to_gateway_domain: '1'
+          enable_zcc_revert: '0'
+          zpa_auth_exp_on_sleep: 0
+          zpa_auth_exp_on_sys_restart: 0
+          zpa_auth_exp_on_net_ip_change: 0
+          instant_force_z_p_a_reauth_state_update: 0
+          zpa_auth_exp_on_win_logon_session: 0
+          zpa_auth_exp_on_win_session_lock: 0
+          zpa_auth_exp_session_lock_state_min_time_in_second: 0
+          packet_tunnel_exclude_list_for_ipv6: '[FF00::/8],[FE80::/10],[FC00::/7]'
+          enable_set_proxy_on_vpn_adapters: 1
+          disable_dns_route_exclusion: 0
+          advance_zpa_reauth: false
+          use_proxy_port_for_t1: '0'
+          use_proxy_port_for_t2: '0'
+          allow_pac_exclusions_only: '0'
+          intercept_zia_traffic_all_adapters: '0'
+          enable_anti_tampering: '0'
+          override_at_cmd_by_policy: '0'
+          reactivate_anti_tampering_time: 0
+          enforce_split_dns: 0
+          drop_quic_traffic: 0
+          enable_zdp_service: '0'
+          update_dns_search_order: 1
+          truncate_large_udpdns_response: 0
+          prioritize_dns_exclusions: 1
+          purge_kerberos_preferred_dc_cache: '0'
+          delete_dhcp_option121_routes: '{"trusted":1,"offTrusted":1,"vpnTrusted":1,"splitVpnTrusted":1}'
+          enable_location_policy_override: 0
+          enable_custom_theme: 0
+          location_ruleset_policies:
+            off_trusted: {}
+            trusted: {}
+            vpn_trusted: {}
+            split_vpn_trusted: {}
+          generate_cli_password_contract:
+            enable_cli: false
+            allow_zpa_disable_without_password: true
+            allow_zia_disable_without_password: true
+            allow_zdx_disable_without_password: true
+          zdx_lite_config_obj: '{"localMetrics":0,"endToEndDiagnostics":{"trusted":0,"vpnTrusted":0,"offTrusted":0,"splitVpnTrusted":0}}'
+          ddil_config: '{"ddilEnabled":0,"businessContinuityActivationDomain":"","businessContinuityTestModeEnabled":0}'
+          zcc_fail_close_settings_lockdown_on_tunnel_process_exit: 1
+          zcc_fail_close_settings_lockdown_on_firewall_error: 0
+          zcc_fail_close_settings_lockdown_on_driver_error: 0
+          zcc_fail_close_settings_thumb_print: A3MTIEvNcbTsB9MYmDFX+f8C1Oi+BkQzgpn6V8DC2Ro=
+          zcc_app_fail_open_policy: 0
+          zcc_tunnel_fail_policy: 0
+          follow_global_for_partner_login: '1'
+          user_allowed_to_add_partner: '0'
+          allow_client_cert_caching_for_web_view2: '0'
+          show_confirmation_dialog_for_cached_cert: '0'
+          enable_flow_based_tunnel: 0
+          enable_network_traffic_process_mapping: 0
+          enable_local_packet_capture: '1'
+          one_id_mt_device_auth_enabled: '0'
+          enable_custom_proxy_detection: '0'
+          prevent_auto_reauth_during_device_lock: '0'
+          use_end_point_location_for_dc_selection: '0'
+          enable_crash_reporting: 0
+          recache_system_proxy: '0'
+          enable_automatic_packet_capture: 0
+          enable_apc_for_critical_sections: 0
+          enable_apc_for_other_sections: 0
+          enable_pc_additional_space: 0
+          pc_additional_space: 0
+          client_connector_ui_language: 0
+          block_private_relay: '0'
+          bypass_dns_traffic_using_udp_proxy: 0
+          reconnect_tun_on_wakeup: 0
+        disaster_recovery:
+          enable_zia_dr: false
+          enable_zpa_dr: false
+          zia_dr_method: 0
+          use_zia_global_db: false
+          allow_zia_test: false
+          allow_zpa_test: false
+        app_service_ids:
+        - '3'
+        - '5'
+        app_services:
+        - active: true
+          app_data_blob:
+          - ipaddr: 52.112.0.0/14,52.122.0.0/15,42.159.34.32/27,42.159.34.64/27,42.159.34.96/28,42.159.162.32/27,42.159.162.64/27,42.159.162.96/28,159.27.160.0/21
+            port: 3478,3479,3480,3481
+          - ipaddr: 52.112.0.0/14,52.122.0.0/15,52.238.119.141/32,52.244.160.207/32,40.72.124.128/28,42.159.34.32/27,42.159.34.64/27,42.159.34.96/28,42.159.162.32/27,42.159.162.64/27,42.159.162.96/28,159.27.160.0/21
+            port: 443,80
+        - active: true
+          app_data_blob:
+          - ipaddr: 3.7.35.0/25 ,3.235.82.0/23 ,3.235.96.0/23 ,4.34.125.128/25 ,4.35.64.128/25
+              ,8.5.128.0/23 ,15.220.80.0/24 ,15.220.81.0/25 ,18.254.23.128/25 ,18.254.61.0/25
+              ,20.203.158.80/28 ,20.203.190.192/26 ,50.239.202.0/23 ,50.239.204.0/24
+              ,52.61.100.128/25 ,64.125.62.0/24 ,64.211.144.0/24 ,64.224.32.0/19 ,65.39.152.0/24
+              ,69.174.57.0/24 ,69.174.108.0/22 ,101.36.167.0/24 ,101.36.170.0/23 ,103.122.166.0/23
+              ,111.33.115.0/25 ,111.33.181.0/25 ,115.110.154.192/26 ,115.114.56.192/26
+              ,115.114.115.0/26 ,115.114.131.0/26 ,120.29.148.0/24 ,121.244.146.0/27
+              ,134.224.0.0/16 ,137.66.128.0/17 ,144.195.0.0/16 ,147.124.96.0/19 ,149.137.0.0/17
+              ,156.45.0.0/17 ,159.124.0.0/16 ,160.1.56.128/25 ,161.199.136.0/22 ,162.12.232.0/22
+              ,162.255.36.0/22 ,165.254.88.0/23 ,166.108.64.0/18 , 168.140.0.0/17,
+              170.114.0.0/16 ,173.231.80.0/20 ,192.204.12.0/22 ,198.251.128.0/17 ,202.177.207.128/27
+              ,203.200.219.128/27 ,204.80.104.0/21 ,204.141.28.0/22 ,206.247.0.0/16
+              ,207.226.132.0/24 ,209.9.211.0/24 ,209.9.215.0/24 ,213.19.144.0/24 ,213.19.153.0/24
+              ,213.244.140.0/24 ,221.122.63.0/24 ,221.122.64.0/24 ,221.122.88.64/27
+              ,221.122.88.128/25 ,221.122.89.128/25 ,221.123.139.192/27
+            port: 3478,3479,8801-8810
+          - ipaddr: 3.7.35.0/25 ,3.235.82.0/23 ,3.235.96.0/23 ,4.34.125.128/25 ,4.35.64.128/25
+              ,8.5.128.0/23 ,15.220.80.0/24 ,15.220.81.0/25 ,18.254.23.128/25 ,18.254.61.0/25
+              ,20.203.158.80/28 ,20.203.190.192/26 ,50.239.202.0/23 ,50.239.204.0/24
+              ,52.61.100.128/25 ,64.125.62.0/24 ,64.211.144.0/24 ,64.224.32.0/19 ,65.39.152.0/24
+              ,69.174.57.0/24 ,69.174.108.0/22 ,101.36.167.0/24 ,101.36.170.0/23 ,103.122.166.0/23
+              ,111.33.115.0/25 ,111.33.181.0/25 ,115.110.154.192/26 ,115.114.56.192/26
+              ,115.114.115.0/26 ,115.114.131.0/26 ,120.29.148.0/24 ,121.244.146.0/27
+              ,134.224.0.0/16 ,137.66.128.0/17 ,144.195.0.0/16 ,147.124.96.0/19 ,149.137.0.0/17
+              ,156.45.0.0/17 ,159.124.0.0/16 ,160.1.56.128/25 ,161.199.136.0/22 ,162.12.232.0/22
+              ,162.255.36.0/22 ,165.254.88.0/23 ,166.108.64.0/18 , 168.140.0.0/17,
+              170.114.0.0/16 ,173.231.80.0/20 ,192.204.12.0/22 ,198.251.128.0/17 ,202.177.207.128/27
+              ,203.200.219.128/27 ,204.80.104.0/21 ,204.141.28.0/22 ,206.247.0.0/16
+              ,207.226.132.0/24 ,209.9.211.0/24 ,209.9.215.0/24 ,213.19.144.0/24 ,213.19.153.0/24
+              ,213.244.140.0/24 ,221.122.63.0/24 ,221.122.64.0/24 ,221.122.88.64/27
+              ,221.122.88.128/25 ,221.122.89.128/25 ,221.123.139.192/27 ,52.84.151.0/24
+              ,170.114.45.0/24 ,170.114.46.0/24
+            port: 443,8801,8802
+        logout_password: Zscaler$ChangeMe3
+        disable_password: Zscaler$ChangeMe3
+        uninstall_password: Zscaler$ChangeMe3
+        forwarding_profile_name: POV - WIN T2.0 - TLS
+    mac:
+    - search_name: POV - No Forwarding
+      update:
+        name: POV - No Forwarding
+        device_type: mac
+        active: 1
+        rule_order: 1
+        log_mode: -1
+        log_level: 0
+        log_file_size: 100
+        reauth_period: '12'
+        reactivate_web_security_minutes: '0'
+        highlight_active_control: 0
+        send_disable_service_reason: 0
+        refresh_kerberos_token: 0
+        enable_device_groups: 0
+        notification_template_contract:
+          template_name: Legacy Notification Settings
+          default_template: '1'
+          enable_client_notification: '0'
+          enable_zia_notification: '0'
+          enable_app_updates_notification: '0'
+          enable_service_status_notification: '0'
+          enable_notification_for_z_p_a_reauth: '1'
+          zpa_reauth_notification_time: 5
+          custom_timer: 5
+          zia_notification_persistant: '0'
+          enable_persistant_notification: '0'
+          zia_firewall: '0'
+          zia_firewall_popup: '0'
+          zia_d_n_s: '0'
+          zia_d_n_s_popup: '0'
+          zia_i_p_s: '0'
+          zia_i_p_s_popup: '0'
+          do_not_disturb: '0'
+          show_device_posture_failure_notification: '0'
+        notification_template_id: 15203
+        policy_token: 32333938373A343A33623036386365642D353839662D343030392D623138372D366561346462623034666161
+        tunnel_zapp_traffic: 0
+        group_all: 0
+        policy_extension:
+          install_ssl_certs: 1
+          source_port_based_bypasses: 3389:*
+          packet_tunnel_exclude_list: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,224.0.0.0/4,255.255.255.255,169.254.0.0/16
+          packet_tunnel_include_list: 0.0.0.0/0
+          use_v8_js_engine: '1'
+          follow_routing_table: '1'
+          use_wsa_poll_for_zpa: '0'
+          use_default_adapter_for_dns: '1'
+          use_zscaler_notification_framework: '0'
+          switch_focus_to_notification: '0'
+          fallback_to_gateway_domain: '1'
+          enable_zcc_revert: '0'
+          zpa_auth_exp_on_sleep: 0
+          zpa_auth_exp_on_sys_restart: 0
+          zpa_auth_exp_on_net_ip_change: 0
+          instant_force_z_p_a_reauth_state_update: 0
+          zpa_auth_exp_on_win_logon_session: 0
+          zpa_auth_exp_on_win_session_lock: 0
+          zpa_auth_exp_session_lock_state_min_time_in_second: 0
+          packet_tunnel_exclude_list_for_ipv6: '[FF00::/8],[FE80::/10],[FC00::/7]'
+          enable_set_proxy_on_vpn_adapters: 1
+          disable_dns_route_exclusion: 0
+          advance_zpa_reauth: false
+          use_proxy_port_for_t1: '0'
+          use_proxy_port_for_t2: '0'
+          allow_pac_exclusions_only: '0'
+          intercept_zia_traffic_all_adapters: '0'
+          enable_anti_tampering: '0'
+          override_at_cmd_by_policy: '0'
+          reactivate_anti_tampering_time: 0
+          enforce_split_dns: 0
+          drop_quic_traffic: 0
+          enable_zdp_service: '0'
+          update_dns_search_order: 1
+          truncate_large_udpdns_response: 0
+          prioritize_dns_exclusions: 1
+          purge_kerberos_preferred_dc_cache: '0'
+          delete_dhcp_option121_routes: '{"trusted":1,"offTrusted":1,"vpnTrusted":1,"splitVpnTrusted":1}'
+          enable_location_policy_override: 0
+          enable_custom_theme: 0
+          location_ruleset_policies:
+            off_trusted: {}
+            trusted: {}
+            vpn_trusted: {}
+            split_vpn_trusted: {}
+          generate_cli_password_contract:
+            enable_cli: false
+            allow_zpa_disable_without_password: true
+            allow_zia_disable_without_password: true
+            allow_zdx_disable_without_password: true
+          zdx_lite_config_obj: '{"localMetrics":0,"endToEndDiagnostics":{"trusted":0,"vpnTrusted":0,"offTrusted":0,"splitVpnTrusted":0}}'
+          ddil_config: '{"ddilEnabled":0,"businessContinuityActivationDomain":"","businessContinuityTestModeEnabled":0}'
+          zcc_fail_close_settings_lockdown_on_tunnel_process_exit: 1
+          zcc_fail_close_settings_lockdown_on_firewall_error: 0
+          zcc_fail_close_settings_lockdown_on_driver_error: 0
+          zcc_fail_close_settings_thumb_print: A3MTIEvNcbTsB9MYmDFX+f8C1Oi+BkQzgpn6V8DC2Ro=
+          zcc_app_fail_open_policy: 0
+          zcc_tunnel_fail_policy: 0
+          follow_global_for_partner_login: '1'
+          user_allowed_to_add_partner: '0'
+          allow_client_cert_caching_for_web_view2: '0'
+          show_confirmation_dialog_for_cached_cert: '0'
+          enable_flow_based_tunnel: 0
+          enable_network_traffic_process_mapping: 0
+          enable_local_packet_capture: '0'
+          one_id_mt_device_auth_enabled: '0'
+          enable_custom_proxy_detection: '0'
+          prevent_auto_reauth_during_device_lock: '0'
+          use_end_point_location_for_dc_selection: '0'
+          enable_crash_reporting: 0
+          recache_system_proxy: '0'
+          enable_automatic_packet_capture: 0
+          enable_apc_for_critical_sections: 0
+          enable_apc_for_other_sections: 0
+          enable_pc_additional_space: 0
+          pc_additional_space: 0
+          client_connector_ui_language: 0
+          block_private_relay: '0'
+          bypass_dns_traffic_using_udp_proxy: 0
+          reconnect_tun_on_wakeup: 0
+        disaster_recovery:
+          enable_zia_dr: false
+          enable_zpa_dr: false
+          zia_dr_method: 0
+          use_zia_global_db: false
+          allow_zia_test: false
+          allow_zpa_test: false
+        app_service_ids:
+        - '3'
+        - '5'
+        app_services:
+        - active: true
+          app_data_blob:
+          - ipaddr: 52.112.0.0/14,52.122.0.0/15,42.159.34.32/27,42.159.34.64/27,42.159.34.96/28,42.159.162.32/27,42.159.162.64/27,42.159.162.96/28,159.27.160.0/21
+            port: 3478,3479,3480,3481
+          - ipaddr: 52.112.0.0/14,52.122.0.0/15,52.238.119.141/32,52.244.160.207/32,40.72.124.128/28,42.159.34.32/27,42.159.34.64/27,42.159.34.96/28,42.159.162.32/27,42.159.162.64/27,42.159.162.96/28,159.27.160.0/21
+            port: 443,80
+        - active: true
+          app_data_blob:
+          - ipaddr: 3.7.35.0/25 ,3.235.82.0/23 ,3.235.96.0/23 ,4.34.125.128/25 ,4.35.64.128/25
+              ,8.5.128.0/23 ,15.220.80.0/24 ,15.220.81.0/25 ,18.254.23.128/25 ,18.254.61.0/25
+              ,20.203.158.80/28 ,20.203.190.192/26 ,50.239.202.0/23 ,50.239.204.0/24
+              ,52.61.100.128/25 ,64.125.62.0/24 ,64.211.144.0/24 ,64.224.32.0/19 ,65.39.152.0/24
+              ,69.174.57.0/24 ,69.174.108.0/22 ,101.36.167.0/24 ,101.36.170.0/23 ,103.122.166.0/23
+              ,111.33.115.0/25 ,111.33.181.0/25 ,115.110.154.192/26 ,115.114.56.192/26
+              ,115.114.115.0/26 ,115.114.131.0/26 ,120.29.148.0/24 ,121.244.146.0/27
+              ,134.224.0.0/16 ,137.66.128.0/17 ,144.195.0.0/16 ,147.124.96.0/19 ,149.137.0.0/17
+              ,156.45.0.0/17 ,159.124.0.0/16 ,160.1.56.128/25 ,161.199.136.0/22 ,162.12.232.0/22
+              ,162.255.36.0/22 ,165.254.88.0/23 ,166.108.64.0/18 , 168.140.0.0/17,
+              170.114.0.0/16 ,173.231.80.0/20 ,192.204.12.0/22 ,198.251.128.0/17 ,202.177.207.128/27
+              ,203.200.219.128/27 ,204.80.104.0/21 ,204.141.28.0/22 ,206.247.0.0/16
+              ,207.226.132.0/24 ,209.9.211.0/24 ,209.9.215.0/24 ,213.19.144.0/24 ,213.19.153.0/24
+              ,213.244.140.0/24 ,221.122.63.0/24 ,221.122.64.0/24 ,221.122.88.64/27
+              ,221.122.88.128/25 ,221.122.89.128/25 ,221.123.139.192/27
+            port: 3478,3479,8801-8810
+          - ipaddr: 3.7.35.0/25 ,3.235.82.0/23 ,3.235.96.0/23 ,4.34.125.128/25 ,4.35.64.128/25
+              ,8.5.128.0/23 ,15.220.80.0/24 ,15.220.81.0/25 ,18.254.23.128/25 ,18.254.61.0/25
+              ,20.203.158.80/28 ,20.203.190.192/26 ,50.239.202.0/23 ,50.239.204.0/24
+              ,52.61.100.128/25 ,64.125.62.0/24 ,64.211.144.0/24 ,64.224.32.0/19 ,65.39.152.0/24
+              ,69.174.57.0/24 ,69.174.108.0/22 ,101.36.167.0/24 ,101.36.170.0/23 ,103.122.166.0/23
+              ,111.33.115.0/25 ,111.33.181.0/25 ,115.110.154.192/26 ,115.114.56.192/26
+              ,115.114.115.0/26 ,115.114.131.0/26 ,120.29.148.0/24 ,121.244.146.0/27
+              ,134.224.0.0/16 ,137.66.128.0/17 ,144.195.0.0/16 ,147.124.96.0/19 ,149.137.0.0/17
+              ,156.45.0.0/17 ,159.124.0.0/16 ,160.1.56.128/25 ,161.199.136.0/22 ,162.12.232.0/22
+              ,162.255.36.0/22 ,165.254.88.0/23 ,166.108.64.0/18 , 168.140.0.0/17,
+              170.114.0.0/16 ,173.231.80.0/20 ,192.204.12.0/22 ,198.251.128.0/17 ,202.177.207.128/27
+              ,203.200.219.128/27 ,204.80.104.0/21 ,204.141.28.0/22 ,206.247.0.0/16
+              ,207.226.132.0/24 ,209.9.211.0/24 ,209.9.215.0/24 ,213.19.144.0/24 ,213.19.153.0/24
+              ,213.244.140.0/24 ,221.122.63.0/24 ,221.122.64.0/24 ,221.122.88.64/27
+              ,221.122.88.128/25 ,221.122.89.128/25 ,221.123.139.192/27 ,52.84.151.0/24
+              ,170.114.45.0/24 ,170.114.46.0/24
+            port: 443,8801,8802
+        logout_password: Zscaler$ChangeMe3
+        disable_password: Zscaler$ChangeMe3
+        uninstall_password: Zscaler$ChangeMe3
+        forwarding_profile_name: POV - No Forwarding
+    - search_name: POV - T2.0 TLS
+      update:
+        name: POV - T2.0 TLS
+        device_type: mac
+        active: 1
+        pac_url: POV_PAC
+        rule_order: 2
+        log_mode: -1
+        log_level: 0
+        log_file_size: 100
+        reauth_period: '12'
+        reactivate_web_security_minutes: '0'
+        highlight_active_control: 0
+        send_disable_service_reason: 0
+        refresh_kerberos_token: 0
+        enable_device_groups: 0
+        notification_template_contract:
+          template_name: Legacy Notification Settings
+          default_template: '1'
+          enable_client_notification: '0'
+          enable_zia_notification: '0'
+          enable_app_updates_notification: '0'
+          enable_service_status_notification: '0'
+          enable_notification_for_z_p_a_reauth: '1'
+          zpa_reauth_notification_time: 5
+          custom_timer: 5
+          zia_notification_persistant: '0'
+          enable_persistant_notification: '0'
+          zia_firewall: '0'
+          zia_firewall_popup: '0'
+          zia_d_n_s: '0'
+          zia_d_n_s_popup: '0'
+          zia_i_p_s: '0'
+          zia_i_p_s_popup: '0'
+          do_not_disturb: '0'
+          show_device_posture_failure_notification: '0'
+        notification_template_id: 15203
+        policy_token: 32333938373A343A62386638636166332D363661652D346165662D396361632D383764653234383738356264
+        tunnel_zapp_traffic: 0
+        group_all: 0
+        policy_extension:
+          install_ssl_certs: 1
+          source_port_based_bypasses: 3389:*
+          packet_tunnel_exclude_list: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,224.0.0.0/4,255.255.255.255,169.254.0.0/16
+          packet_tunnel_include_list: 0.0.0.0/0
+          use_v8_js_engine: '1'
+          follow_routing_table: '1'
+          use_wsa_poll_for_zpa: '0'
+          use_default_adapter_for_dns: '1'
+          use_zscaler_notification_framework: '0'
+          switch_focus_to_notification: '0'
+          fallback_to_gateway_domain: '1'
+          enable_zcc_revert: '0'
+          zpa_auth_exp_on_sleep: 0
+          zpa_auth_exp_on_sys_restart: 0
+          zpa_auth_exp_on_net_ip_change: 0
+          instant_force_z_p_a_reauth_state_update: 0
+          zpa_auth_exp_on_win_logon_session: 0
+          zpa_auth_exp_on_win_session_lock: 0
+          zpa_auth_exp_session_lock_state_min_time_in_second: 0
+          packet_tunnel_exclude_list_for_ipv6: '[FF00::/8],[FE80::/10],[FC00::/7]'
+          enable_set_proxy_on_vpn_adapters: 1
+          disable_dns_route_exclusion: 0
+          advance_zpa_reauth: false
+          use_proxy_port_for_t1: '0'
+          use_proxy_port_for_t2: '0'
+          allow_pac_exclusions_only: '0'
+          intercept_zia_traffic_all_adapters: '0'
+          enable_anti_tampering: '0'
+          override_at_cmd_by_policy: '0'
+          reactivate_anti_tampering_time: 0
+          enforce_split_dns: 0
+          drop_quic_traffic: 0
+          enable_zdp_service: '0'
+          update_dns_search_order: 1
+          truncate_large_udpdns_response: 0
+          prioritize_dns_exclusions: 1
+          purge_kerberos_preferred_dc_cache: '0'
+          delete_dhcp_option121_routes: '{"trusted":1,"offTrusted":1,"vpnTrusted":1,"splitVpnTrusted":1}'
+          enable_location_policy_override: 0
+          enable_custom_theme: 0
+          location_ruleset_policies:
+            off_trusted: {}
+            trusted: {}
+            vpn_trusted: {}
+            split_vpn_trusted: {}
+          generate_cli_password_contract:
+            enable_cli: false
+            allow_zpa_disable_without_password: true
+            allow_zia_disable_without_password: true
+            allow_zdx_disable_without_password: true
+          zdx_lite_config_obj: '{"localMetrics":0,"endToEndDiagnostics":{"trusted":0,"vpnTrusted":0,"offTrusted":0,"splitVpnTrusted":0}}'
+          ddil_config: '{"ddilEnabled":0,"businessContinuityActivationDomain":"","businessContinuityTestModeEnabled":0}'
+          zcc_fail_close_settings_lockdown_on_tunnel_process_exit: 1
+          zcc_fail_close_settings_lockdown_on_firewall_error: 0
+          zcc_fail_close_settings_lockdown_on_driver_error: 0
+          zcc_fail_close_settings_thumb_print: A3MTIEvNcbTsB9MYmDFX+f8C1Oi+BkQzgpn6V8DC2Ro=
+          zcc_app_fail_open_policy: 0
+          zcc_tunnel_fail_policy: 0
+          follow_global_for_partner_login: '1'
+          user_allowed_to_add_partner: '0'
+          allow_client_cert_caching_for_web_view2: '0'
+          show_confirmation_dialog_for_cached_cert: '0'
+          enable_flow_based_tunnel: 0
+          enable_network_traffic_process_mapping: 0
+          enable_local_packet_capture: '0'
+          one_id_mt_device_auth_enabled: '0'
+          enable_custom_proxy_detection: '0'
+          prevent_auto_reauth_during_device_lock: '0'
+          use_end_point_location_for_dc_selection: '0'
+          enable_crash_reporting: 0
+          recache_system_proxy: '0'
+          enable_automatic_packet_capture: 0
+          enable_apc_for_critical_sections: 0
+          enable_apc_for_other_sections: 0
+          enable_pc_additional_space: 0
+          pc_additional_space: 0
+          client_connector_ui_language: 0
+          block_private_relay: '0'
+          bypass_dns_traffic_using_udp_proxy: 0
+          reconnect_tun_on_wakeup: 0
+        disaster_recovery:
+          enable_zia_dr: false
+          enable_zpa_dr: false
+          zia_dr_method: 0
+          use_zia_global_db: false
+          allow_zia_test: false
+          allow_zpa_test: false
+        app_service_ids:
+        - '3'
+        - '5'
+        app_services:
+        - active: true
+          app_data_blob:
+          - ipaddr: 52.112.0.0/14,52.122.0.0/15,42.159.34.32/27,42.159.34.64/27,42.159.34.96/28,42.159.162.32/27,42.159.162.64/27,42.159.162.96/28,159.27.160.0/21
+            port: 3478,3479,3480,3481
+          - ipaddr: 52.112.0.0/14,52.122.0.0/15,52.238.119.141/32,52.244.160.207/32,40.72.124.128/28,42.159.34.32/27,42.159.34.64/27,42.159.34.96/28,42.159.162.32/27,42.159.162.64/27,42.159.162.96/28,159.27.160.0/21
+            port: 443,80
+        - active: true
+          app_data_blob:
+          - ipaddr: 3.7.35.0/25 ,3.235.82.0/23 ,3.235.96.0/23 ,4.34.125.128/25 ,4.35.64.128/25
+              ,8.5.128.0/23 ,15.220.80.0/24 ,15.220.81.0/25 ,18.254.23.128/25 ,18.254.61.0/25
+              ,20.203.158.80/28 ,20.203.190.192/26 ,50.239.202.0/23 ,50.239.204.0/24
+              ,52.61.100.128/25 ,64.125.62.0/24 ,64.211.144.0/24 ,64.224.32.0/19 ,65.39.152.0/24
+              ,69.174.57.0/24 ,69.174.108.0/22 ,101.36.167.0/24 ,101.36.170.0/23 ,103.122.166.0/23
+              ,111.33.115.0/25 ,111.33.181.0/25 ,115.110.154.192/26 ,115.114.56.192/26
+              ,115.114.115.0/26 ,115.114.131.0/26 ,120.29.148.0/24 ,121.244.146.0/27
+              ,134.224.0.0/16 ,137.66.128.0/17 ,144.195.0.0/16 ,147.124.96.0/19 ,149.137.0.0/17
+              ,156.45.0.0/17 ,159.124.0.0/16 ,160.1.56.128/25 ,161.199.136.0/22 ,162.12.232.0/22
+              ,162.255.36.0/22 ,165.254.88.0/23 ,166.108.64.0/18 , 168.140.0.0/17,
+              170.114.0.0/16 ,173.231.80.0/20 ,192.204.12.0/22 ,198.251.128.0/17 ,202.177.207.128/27
+              ,203.200.219.128/27 ,204.80.104.0/21 ,204.141.28.0/22 ,206.247.0.0/16
+              ,207.226.132.0/24 ,209.9.211.0/24 ,209.9.215.0/24 ,213.19.144.0/24 ,213.19.153.0/24
+              ,213.244.140.0/24 ,221.122.63.0/24 ,221.122.64.0/24 ,221.122.88.64/27
+              ,221.122.88.128/25 ,221.122.89.128/25 ,221.123.139.192/27
+            port: 3478,3479,8801-8810
+          - ipaddr: 3.7.35.0/25 ,3.235.82.0/23 ,3.235.96.0/23 ,4.34.125.128/25 ,4.35.64.128/25
+              ,8.5.128.0/23 ,15.220.80.0/24 ,15.220.81.0/25 ,18.254.23.128/25 ,18.254.61.0/25
+              ,20.203.158.80/28 ,20.203.190.192/26 ,50.239.202.0/23 ,50.239.204.0/24
+              ,52.61.100.128/25 ,64.125.62.0/24 ,64.211.144.0/24 ,64.224.32.0/19 ,65.39.152.0/24
+              ,69.174.57.0/24 ,69.174.108.0/22 ,101.36.167.0/24 ,101.36.170.0/23 ,103.122.166.0/23
+              ,111.33.115.0/25 ,111.33.181.0/25 ,115.110.154.192/26 ,115.114.56.192/26
+              ,115.114.115.0/26 ,115.114.131.0/26 ,120.29.148.0/24 ,121.244.146.0/27
+              ,134.224.0.0/16 ,137.66.128.0/17 ,144.195.0.0/16 ,147.124.96.0/19 ,149.137.0.0/17
+              ,156.45.0.0/17 ,159.124.0.0/16 ,160.1.56.128/25 ,161.199.136.0/22 ,162.12.232.0/22
+              ,162.255.36.0/22 ,165.254.88.0/23 ,166.108.64.0/18 , 168.140.0.0/17,
+              170.114.0.0/16 ,173.231.80.0/20 ,192.204.12.0/22 ,198.251.128.0/17 ,202.177.207.128/27
+              ,203.200.219.128/27 ,204.80.104.0/21 ,204.141.28.0/22 ,206.247.0.0/16
+              ,207.226.132.0/24 ,209.9.211.0/24 ,209.9.215.0/24 ,213.19.144.0/24 ,213.19.153.0/24
+              ,213.244.140.0/24 ,221.122.63.0/24 ,221.122.64.0/24 ,221.122.88.64/27
+              ,221.122.88.128/25 ,221.122.89.128/25 ,221.123.139.192/27 ,52.84.151.0/24
+              ,170.114.45.0/24 ,170.114.46.0/24
+            port: 443,8801,8802
+        logout_password: Zscaler$ChangeMe3
+        disable_password: Zscaler$ChangeMe3
+        uninstall_password: Zscaler$ChangeMe3
+        forwarding_profile_name: POV - MAC T2.0 - TLS
+    ios: []
+    android: []
+    linux: []
+  custom_ip_bypasses: []
+  custom_process_bypasses: []
+  device_cleanup:
+    active: '1'
+    auto_purge_days: '120'
+    auto_removal_days: '90'
+    device_exceed_limit: '16'
+    force_remove_type: '1'
+  notification_templates: []
+  posture_check:
+  - name: POV - EntraID Domain Join
+    posture_udid: 2632b933-c3be-4c7d-99ce-028d60124f8c
+    apply_to_machine_tunnel_enabled: false
+    crl_check_enabled: false
+    non_exportable_private_key_enabled: false
+  - name: POV - MS Defender Check
+    posture_udid: 7b8ca00b-4075-4eac-9075-c462c05f7938
+    apply_to_machine_tunnel_enabled: false
+    crl_check_enabled: false
+    non_exportable_private_key_enabled: false
+  posture_profile:
+    windows: []
+    macos: []
+    linux: []
+    ios: []
+    android: []
+  trusted_networks: []
+  web_privacy:
+    active: '1'
+    collectUserInfo: '1'
+    collectMachineHostname: '1'
+    collectZdxLocation: '0'
+    enablePacketCapture: '1'
+    disableCrashlytics: '0'
+    overrideT2ProtocolSetting: '0'
+    restrictRemotePacketCapture: '0'
+    grantAccessToZscalerLogFolder: '1'
+    exportLogsForNonAdmin: '0'
+    enableAutoLogSnippet: '1'
+zia:
+  advanced_settings:
+    enable_dns_resolution_on_transparent_proxy: false
+    enable_ipv6_dns_resolution_on_transparent_proxy: false
+    enable_ipv6_dns_optimization_on_all_transparent_proxy: false
+    enable_evaluate_policy_on_global_ssl_bypass: false
+    enable_office365: false
+    log_internal_ip: false
+    enforce_surrogate_ip_for_windows_app: false
+    track_http_tunnel_on_http_ports: true
+    block_http_tunnel_on_non_http_ports: true
+    block_domain_fronting_on_host_header: true
+    zscaler_client_connector1_and_pac_road_warrior_in_firewall: true
+    cascade_url_filtering: false
+    enable_policy_for_unauthenticated_traffic: false
+    block_non_compliant_http_request_on_http_ports: false
+    enable_admin_rank_access: false
+    ui_session_timeout: 1800
+    http2_nonbrowser_traffic_enabled: false
+    ecs_for_all_enabled: false
+    dynamic_user_risk_enabled: false
+    block_connect_host_sni_mismatch: true
+    prefer_sni_over_conn_host: false
+    sipa_xff_header_enabled: true
+    block_non_http_on_http_port_enabled: false
+    auth_bypass_url_categories:
+    - NONE
+    domain_fronting_bypass_url_categories:
+    - ZSPROXY_IPS
+    auth_bypass_urls:
+    - login.windows.net
+    - aadcdn.msftauth.net
+    - login.microsoftonline.com
+    - aadcdn.msauth.net
+    - .windowsazure.com
+    kerberos_bypass_url_categories:
+    - NONE
+    basic_bypass_url_categories:
+    - NONE
+    basic_bypass_apps:
+    - NONE
+    http_range_header_remove_url_categories:
+    - NONE
+    digest_auth_bypass_url_categories:
+    - NONE
+    dns_resolution_on_transparent_proxy_exempt_url_categories:
+    - NONE
+    dns_resolution_on_transparent_proxy_ipv6_exempt_url_categories:
+    - NONE
+    dns_resolution_on_transparent_proxy_exempt_apps:
+    - NONE
+    dns_resolution_on_transparent_proxy_ipv6_exempt_apps:
+    - NONE
+    dns_resolution_on_transparent_proxy_url_categories:
+    - NONE
+    dns_resolution_on_transparent_proxy_ipv6_url_categories:
+    - NONE
+    dns_resolution_on_transparent_proxy_apps:
+    - NONE
+    dns_resolution_on_transparent_proxy_ipv6_apps:
+    - NONE
+    block_domain_fronting_apps:
+    - NONE
+    prefer_sni_over_conn_host_apps:
+    - NONE
+    sni_dns_optimization_bypass_url_categories:
+    - NONE
+  url_filtering_settings:
+    enableDynamicContentCat: true
+    considerEmbeddedSites: true
+    enableBlockOverrideForNonAuthUser: true
+    enableCIPACompliance: false
+    zveloDbLookupDisabled: false
+    enableCreativeCommonsSearchResults: false
+    enforceSafeSearch: false
+    safeSearchApps:
+    - ANY
+    enableNewlyRegisteredDomains: true
+    enableOffice365: false
+    enableMsftO365: true
+    enableUcaasZoom: true
+    enableUcaasLogMeIn: true
+    enableUcaasRingCentral: true
+    enableUcaasWebex: true
+    enableUcaasTalkdesk: true
+    enableChatGptPrompt: true
+    enableMicrosoftCoPilotPrompt: true
+    enableGeminiPrompt: true
+    enablePOEPrompt: true
+    enableMetaPrompt: true
+    enablePerPlexityPrompt: true
+    enableDeepSeekPrompt: true
+    enableWriterPrompt: true
+    enableGrokPrompt: true
+    enableMistralAIPrompt: true
+    enableClaudePrompt: true
+    enableQuillbotAIPrompt: true
+    enableGoogleAIPrompt: true
+    enableGrammarlyPrompt: true
+  atp_policy:
+    risk_tolerance: 35
+    risk_tolerance_capture: false
+    cmd_ctl_server_blocked: true
+    cmd_ctl_server_capture: false
+    cmd_ctl_traffic_blocked: true
+    cmd_ctl_traffic_capture: false
+    malware_sites_blocked: true
+    malware_sites_capture: false
+    active_x_blocked: true
+    active_x_capture: false
+    browser_exploits_blocked: true
+    browser_exploits_capture: false
+    file_format_vunerabilites_blocked: true
+    file_format_vunerabilites_capture: false
+    known_phishing_sites_blocked: true
+    known_phishing_sites_capture: false
+    suspected_phishing_sites_blocked: true
+    suspected_phishing_sites_capture: false
+    suspect_adware_spyware_sites_blocked: true
+    suspect_adware_spyware_sites_capture: false
+    webspam_blocked: true
+    webspam_capture: false
+    irc_tunnelling_blocked: true
+    irc_tunnelling_capture: false
+    anonymizer_blocked: true
+    anonymizer_capture: false
+    cookie_stealing_blocked: true
+    cookie_stealing_pcap_enabled: false
+    potential_malicious_requests_blocked: true
+    potential_malicious_requests_capture: false
+    blocked_countries:
+    - COUNTRY_IR
+    - COUNTRY_KP
+    - COUNTRY_RU
+    block_countries_capture: false
+    bit_torrent_blocked: true
+    bit_torrent_capture: false
+    tor_blocked: true
+    tor_capture: false
+    google_talk_blocked: true
+    google_talk_capture: false
+    ssh_tunnelling_blocked: true
+    ssh_tunnelling_capture: false
+    crypto_mining_blocked: true
+    crypto_mining_capture: false
+    ad_spyware_sites_blocked: true
+    ad_spyware_sites_capture: false
+    dga_domains_blocked: true
+    alert_for_unknown_or_suspicious_c2_traffic: false
+    dga_domains_capture: false
+    malicious_urls_capture: false
+  malware_policy:
+    virus_blocked: true
+    virus_capture: false
+    unwanted_applications_blocked: true
+    unwanted_applications_capture: false
+    trojan_blocked: true
+    trojan_capture: false
+    worm_blocked: true
+    worm_capture: false
+    adware_blocked: true
+    adware_capture: false
+    spyware_blocked: true
+    spyware_capture: false
+    ransomware_blocked: true
+    ransomware_capture: false
+    remote_access_tool_blocked: true
+    remote_access_tool_capture: false
+  threat_protection:
+    policy:
+      block_unscannable_files: false
+      block_password_protected_archive_files: false
+    protocols:
+      inspect_http: true
+      inspect_ftp_over_http: true
+      inspect_ftp: true
+    inspection:
+      inspect_inbound: true
+      inspect_outbound: true
+  ip_destination_groups: []
+  pac_files:
+  - name: POV_SE_PAC
+    description: POV - Strict Enforcement PAC File
+    editable: true
+    pac_url_obfuscated: false
+    pac_verification_status: VERIFY_NOERR
+    pac_version_status: DEPLOYED
+    pac_version: 1
+    pac_commit_message: Initial Version
+    total_hits: 0
+    last_modification_time: 1780857816
+    create_time: 1780857816
+    pac_file_path: pac_files/POV_SE_PAC.pac
+  - name: POV_PAC
+    description: POV PAC File
+    editable: true
+    pac_url_obfuscated: false
+    pac_verification_status: VERIFY_NOERR
+    pac_version_status: DEPLOYED
+    pac_version: 1
+    pac_commit_message: Initial Version
+    total_hits: 0
+    last_modification_time: 1780857816
+    create_time: 1780857816
+    pac_file_path: pac_files/POV_PAC.pac
+  ip_source_groups: []
+  dns_rules: []
+  firewall_rules:
+  - name: POV - BLOCK QUIC
+    enable_full_logging: false
+    order: 1
+    rank: 7
+    action: BLOCK_ICMP
+    state: ENABLED
+    description: POV - Disable QUIC protocol
+    nw_services:
+    - name: QUIC
+      id: 8861852
+      is_name_l10n_tag: true
+    default_rule: false
+    exclude_src_countries: false
+    predefined: false
+  url_categories:
+  - configured_name: POV - ALLOW Sites
+    super_category: USER_DEFINED
+    urls:
+    - .example.com
+    custom_category: true
+    editable: true
+    description: https://help.zscaler.com/zia/url-format-guidelines
+    type: URL_CATEGORY
+    custom_urls_count: 1
+    urls_retaining_parent_category_count: 0
+    custom_ip_ranges_count: 0
+    ip_ranges_retaining_parent_category_count: 0
+    url_type: EXACT
+  - configured_name: POV - BLOCK Sites
+    super_category: USER_DEFINED
+    urls:
+    - .perdu.com
+    custom_category: true
+    editable: true
+    description: https://help.zscaler.com/zia/url-format-guidelines
+    type: URL_CATEGORY
+    custom_urls_count: 1
+    urls_retaining_parent_category_count: 0
+    custom_ip_ranges_count: 0
+    ip_ranges_retaining_parent_category_count: 0
+    url_type: EXACT
+  - configured_name: POV - CAUTION Sites
+    super_category: USER_DEFINED
+    urls:
+    - es.wikipedia.org
+    custom_category: true
+    editable: true
+    type: URL_CATEGORY
+    custom_urls_count: 1
+    urls_retaining_parent_category_count: 0
+    custom_ip_ranges_count: 0
+    ip_ranges_retaining_parent_category_count: 0
+    url_type: EXACT
+  - configured_name: POV - SSL BYPASS Sites
+    super_category: USER_DEFINED
+    urls:
+    - sha256.badssl.com
+    custom_category: true
+    editable: true
+    description: https://help.zscaler.com/zia/url-format-guidelines
+    type: URL_CATEGORY
+    custom_urls_count: 1
+    urls_retaining_parent_category_count: 0
+    custom_ip_ranges_count: 0
+    ip_ranges_retaining_parent_category_count: 0
+    url_type: EXACT
+  file_type_rules:
+  - name: POV - EXE-MSI Admin
+    description: "POV - Allow Executable and MSI for IT Admin\n\nTODO - Assign IT Admin Group or Dept"
+    state: DISABLED
+    filtering_action: ALLOW
+    operation: UPLOAD_DOWNLOAD
+    min_size: 0
+    max_size: 409600
+    protocols:
+    - FOHTTP_RULE
+    - FTP_RULE
+    - HTTPS_RULE
+    - HTTP_RULE
+    file_types:
+    - FTCATEGORY_MSIX
+    - FTCATEGORY_POWERSHELL
+    - FTCATEGORY_DEB
+    - FTCATEGORY_ELF
+    - FTCATEGORY_MICROSOFT_INSTALLER
+    - FTCATEGORY_SHELL_SCRAP
+    - FTCATEGORY_MSC
+    - FTCATEGORY_VISUAL_BASIC_SCRIPT
+    - FTCATEGORY_WINDOWS_EXECUTABLES
+    - FTCATEGORY_MSP
+    - FTCATEGORY_MACH
+    - FTCATEGORY_WINDOWS_LNK
+    - FTCATEGORY_BAT
+    - FTCATEGORY_PYTHON
+    - FTCATEGORY_APPX
+    - FTCATEGORY_WINDOWS_LIBRARY
+    - FTCATEGORY_BASH_SCRIPTS
+    - FTCATEGORY_REG
+    - FTCATEGORY_DRV
+    active_content: false
+    unscannable: false
+    rank: 7
+    order: 1
+  - name: POV - Block EXE-MSI
+    description: POV - Block Executable for Everyone.
+    state: ENABLED
+    filtering_action: BLOCK
+    operation: UPLOAD_DOWNLOAD
+    min_size: 0
+    max_size: 409600
+    protocols:
+    - FOHTTP_RULE
+    - FTP_RULE
+    - HTTPS_RULE
+    - HTTP_RULE
+    file_types:
+    - FTCATEGORY_MSIX
+    - FTCATEGORY_POWERSHELL
+    - FTCATEGORY_DEB
+    - FTCATEGORY_ELF
+    - FTCATEGORY_MICROSOFT_INSTALLER
+    - FTCATEGORY_SHELL_SCRAP
+    - FTCATEGORY_MSC
+    - FTCATEGORY_VISUAL_BASIC_SCRIPT
+    - FTCATEGORY_WINDOWS_EXECUTABLES
+    - FTCATEGORY_MSP
+    - FTCATEGORY_MACH
+    - FTCATEGORY_WINDOWS_LNK
+    - FTCATEGORY_BAT
+    - FTCATEGORY_PYTHON
+    - FTCATEGORY_APPX
+    - FTCATEGORY_WINDOWS_LIBRARY
+    - FTCATEGORY_BASH_SCRIPTS
+    - FTCATEGORY_REG
+    - FTCATEGORY_DRV
+    active_content: false
+    unscannable: false
+    rank: 7
+    order: 2
+  ssl_policy:
+  - name: POV - ZS Recomended M365
+    order: 1
+    rank: 7
+    road_warrior_for_kerberos: false
+    cloud_applications:
+    - MSLOGINSERVICES
+    - ONEDRIVE
+    - SHAREPOINTONLINE
+    action:
+      type: DECRYPT
+      show_eun: false
+      show_eunatp: false
+      override_default_certificate: false
+      decrypt_sub_actions:
+        server_certificates: BLOCK
+        ocsp_check: true
+        block_ssl_traffic_with_no_sni_enabled: false
+        min_client_tls_version: CLIENT_TLS_1_2
+        min_server_tls_version: SERVER_TLS_1_2
+        block_undecrypt: false
+        http2_enabled: false
+    state: ENABLED
+    predefined: false
+    default_rule: false
+  - name: POV - SSL BYPASS
+    order: 5
+    rank: 7
+    road_warrior_for_kerberos: false
+    url_categories:
+    - POV - SSL BYPASS Sites
+    action:
+      type: DO_NOT_DECRYPT
+      show_eun: false
+      show_eunatp: false
+      override_default_certificate: false
+      do_not_decrypt_sub_actions:
+        bypass_other_policies: true
+        ocsp_check: false
+        block_ssl_traffic_with_no_sni_enabled: false
+    state: ENABLED
+    description: POV - SSL Bypass for BYPASS category
+    predefined: false
+    default_rule: false
+  - name: POV - Inspect All
+    order: 99
+    rank: 7
+    road_warrior_for_kerberos: false
+    action:
+      type: DECRYPT
+      show_eun: false
+      show_eunatp: false
+      override_default_certificate: false
+      decrypt_sub_actions:
+        server_certificates: BLOCK
+        ocsp_check: true
+        block_ssl_traffic_with_no_sni_enabled: true
+        min_client_tls_version: CLIENT_TLS_1_2
+        min_server_tls_version: SERVER_TLS_1_2
+        block_undecrypt: true
+        http2_enabled: true
+    state: ENABLED
+    description: POV - Inspect All Example
+    predefined: false
+    default_rule: false
+  url_filtering_rules:
+  - name: POV - ALLOWED Sites
+    order: 7
+    rank: 7
+    state: ENABLED
+    block_override: false
+    time_quota: 0
+    size_quota: 0
+    enforce_time_validity: false
+    action: ALLOW
+    ciparule: false
+    protocols:
+    - WEBSOCKETSSL_RULE
+    - WEBSOCKET_RULE
+    - DOHTTPS_RULE
+    - TUNNELSSL_RULE
+    - HTTP_PROXY
+    - FOHTTP_RULE
+    - FTP_RULE
+    - HTTPS_RULE
+    - HTTP_RULE
+    - SSL_RULE
+    - TUNNEL_RULE
+    url_categories:
+    - POV - ALLOW Sites
+    request_methods:
+    - OPTIONS
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - TRACE
+    - CONNECT
+    - OTHER
+    - PROPFIND
+    - PROPPATCH
+    - MOVE
+    - MKCOL
+    - LOCK
+    - COPY
+    - UNLOCK
+    - PATCH
+  - name: POV - BLOCK Sites
+    order: 6
+    rank: 7
+    state: ENABLED
+    block_override: false
+    time_quota: 0
+    size_quota: 0
+    enforce_time_validity: false
+    action: BLOCK
+    ciparule: false
+    protocols:
+    - WEBSOCKETSSL_RULE
+    - WEBSOCKET_RULE
+    - DOHTTPS_RULE
+    - TUNNELSSL_RULE
+    - HTTP_PROXY
+    - FOHTTP_RULE
+    - FTP_RULE
+    - HTTPS_RULE
+    - HTTP_RULE
+    - SSL_RULE
+    - TUNNEL_RULE
+    url_categories:
+    - POV - BLOCK Sites
+    request_methods:
+    - OPTIONS
+    - GET
+    - HEAD
+    - POST
+    - PUT
+    - DELETE
+    - TRACE
+    - CONNECT
+    - OTHER
+    - PROPFIND
+    - PROPPATCH
+    - MOVE
+    - MKCOL
+    - LOCK
+    - COPY
+    - UNLOCK
+    - PATCH

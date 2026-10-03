@@ -1,0 +1,465 @@
+version: '1.0'
+zia:
+  rule_labels:
+    - name: zGuard - API created
+      description: "API created rules for zGuard POV"
+  proxies:
+  - name: zGuard - Proxy
+    type: PROXYCHAIN
+    address: forward.zseclipse.net
+    port: 9443
+    cert:
+      name: zGuard Root Cert
+    description: zGuard Proxy
+    insert_xau_header: true
+    base64_encode_xau_header: false
+  proxy_gateways:
+  - name: zGuard - Gateway
+    type: PROXYCHAIN
+    primary_proxy:
+      name: zGuard - Proxy
+    description: zGuard Proxy Gateway
+    fail_closed: true
+  ip_destination_groups:
+  - name: zGuard - Anthropic Claude
+    description: 'Web Browsers
+
+      Claude Desktop
+
+      Claude CLI
+
+      Claude Code for VS Code
+
+      Claude MS Add-in (Excel/PPT)
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - claude.ai
+    - api.anthropic.com
+  - name: zGuard - Bedrock-Anthropic
+    description: 'Web Browsers
+
+      CLI
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_FQDN
+    addresses:
+    - bedrock-runtime.ap-northeast-1.amazonaws.com
+    - bedrock-runtime.ap-northeast-2.amazonaws.com
+    - bedrock-runtime.ap-south-1.amazonaws.com
+    - bedrock-runtime.ap-southeast-1.amazonaws.com
+    - bedrock-runtime.ap-southeast-2.amazonaws.com
+    - bedrock-runtime.ca-central-1.amazonaws.com
+    - bedrock-runtime.eu-central-1.amazonaws.com
+    - bedrock-runtime.eu-west-1.amazonaws.com
+    - bedrock-runtime.eu-west-2.amazonaws.com
+    - bedrock-runtime.eu-west-3.amazonaws.com
+    - bedrock-runtime.sa-east-1.amazonaws.com
+    - bedrock-runtime.us-east-1.amazonaws.com
+    - bedrock-runtime.us-east-2.amazonaws.com
+    - bedrock-runtime.us-gov-east-1.amazonaws.com
+    - bedrock-runtime.us-west-2.amazonaws.com
+    - bedrock-runtime.ap-northeast-3.amazonaws.com
+  - name: zGuard - Bolt.new
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - bolt.new
+  - name: zGuard - Builder.io
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - api.builder.io
+    - cdn.builder.io
+    - cdn.builder.codes
+  - name: zGuard - DeepAI
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - api.deepai.org
+  - name: zGuard - ElevenLabs
+    description: 'Web Browsers: Text-to-speech supported
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_FQDN
+    addresses:
+    - api.us.elevenlabs.io
+  - name: zGuard - Gamma
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - api.gamma.app
+    - ai.api.gamma.app
+  - name: zGuard - GitHub Copilot
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_FQDN
+    addresses:
+    - api.individual.githubcopilot.com
+  - name: zGuard - GitHub Copilot Enterprise
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_FQDN
+    addresses:
+    - api.business.githubcopilot.com
+    - api.enterprise.githubcopilot.com
+    - api.individual.githubcopilot.com
+  - name: zGuard - Glean
+    description: 'Web Browser Chat
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - glean.com
+  - name: zGuard - Google Gemini
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - gemini.google.com
+  - name: zGuard - Google Gemini Code - FQDN
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_FQDN
+    addresses:
+    - cloudcode-pa.googleapis.com
+  - name: zGuard - Google Gemini Code - Wildcard
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - gemini.google.com
+  - name: zGuard - Google Gemini Enterprise
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - biz-discoveryengine.googleapis.com
+    - content-us-discoveryengine.googleapis.com
+    - discoveryengine.clients6.google.com
+    - us-discoveryengine.clients6.google.com
+    - eu-discoveryengine.clients6.google.com
+    - global-discoveryengine.clients6.google.com
+    - us-discoveryengine.googleapis.com
+    - eu-discoveryengine.googleapis.com
+  - name: zGuard - Google Gemini Workspaces
+    description: 'Google Suite (Docs, Slides, Sheets): "Ask Gemini" and "Generate
+      document" are supported.
+
+      "Help me write," "Refine," and "Refine the selected text" functionality is not
+      supported.
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_FQDN
+    addresses:
+    - appsgenaiserver-pa.clients6.google.com
+  - name: zGuard - Grok xAI
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - grok.com
+  - name: zGuard - Lovable
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_FQDN
+    addresses:
+    - api.lovable.dev
+  - name: zGuard - MaxAI
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - api.maxai.me
+  - name: zGuard - Microsoft 365 Copilot
+    description: 'M365 Web Experience (Web Browser)
+
+      M365 Desktop App (Windows and Mac)
+
+      Copilot in Word (Desktop App and Web Browser)
+
+      Copilot in Outlook (Web Browser)
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - substrate.office.com
+    - substrate.svc.cloud.microsoft
+    - copilot.microsoft.com
+    - api.business.githubcopilot.com
+    - api.enterprise.githubcopilot.com
+    - api.individual.githubcopilot.com
+  - name: zGuard - Mistral AI
+    description: 'Mistral Vibe (formerly Le Chat) backend
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - mistral.ai
+  - name: zGuard - Napkin AI
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - app.napkin.ai
+  - name: zGuard - NotebookLM
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - notebooklm.google.com
+  - name: zGuard - OpenAI ChatGPT Codex
+    description: 'Web Browsers
+
+      Desktop App (Windows and Mac)
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - chatgpt.com
+    - chat.openai.com
+  - name: zGuard - OpenCode
+    description: 'App
+
+      CLI
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - opencode.ai
+  - name: zGuard - Perplexity
+    description: 'Web Browsers
+
+      Perplexity Desktop App
+
+      Comet Browser
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - perplexity.ai
+  - name: zGuard - Vertex AI
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - cloudconsole-pa.clients6.google.com
+  - name: zGuard - Windsurf
+    description: 'Desktop App (Proxy Mode Only).
+
+      Custom Block Messages are not currently supported with this provider.
+
+      Custom Block Messages are not currently supported with this provider.
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_FQDN
+    addresses:
+    - server.self-serve.windsurf.com
+    - server.codeium.com
+  root_certificates:
+  - name: zGuard Root Cert
+    displayName: zGuard Root Cert
+    certTypes:
+    - PROXY_CHAINING
+    cert: |-
+      -----BEGIN CERTIFICATE-----
+      MIID0TCCArmgAwIBAgIUFOf1klNEKLiD2dvirrbjVhgABr0wDQYJKoZIhvcNAQEL
+      BQAwcDELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExETAPBgNVBAcM
+      CFNhbiBKb3NlMRAwDgYDVQQKDAdac2NhbGVyMRAwDgYDVQQLDAdFY2xpcHNlMRUw
+      EwYDVQQDDAxwcm9kLXJvb3QtY2EwHhcNMjUwNDA0MTczNDI1WhcNMzUwNDAyMTcz
+      NDI1WjBwMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTERMA8GA1UE
+      BwwIU2FuIEpvc2UxEDAOBgNVBAoMB1pzY2FsZXIxEDAOBgNVBAsMB0VjbGlwc2Ux
+      FTATBgNVBAMMDHByb2Qtcm9vdC1jYTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+      AQoCggEBAKF9FtaqLUeFMcxIxY38epsdooMH2lMvESI4IuNXIAm2Wu7XnxK8rNcj
+      ITyX3BOfQcK6PEZmHVIKNrYPWla+SKFwtyszXEAHgEN8q/vZDGoJIwP+LmEQfSZz
+      72rFaFoGwbLPgSJHKDo53nJRCenDF5suJeV2fEUZyNu7uqFb/Cx9xT2uufPKCu/e
+      nyR13xqSHUeKd3FAnGl2hmaoWCoV8SgCYV2glqWfQ9H1y1hZWfHFmLjPtOFZSxjJ
+      v/yutUDg2Un5NxisBfORXbpMWEqCcs3YXYFbwOMrrMtqxtVUGMjsrcl3zubPCifB
+      zh+ku4g0ZxhTdxXjCzuBLGBBmYLMxNUCAwEAAaNjMGEwHQYDVR0OBBYEFLy9SqP6
+      TTcF61H7y1YbBTxbQcHiMB8GA1UdIwQYMBaAFLy9SqP6TTcF61H7y1YbBTxbQcHi
+      MA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgIEMA0GCSqGSIb3DQEBCwUA
+      A4IBAQBo2t4HJf//AgMYUWGWy74lyv2rdNLMlY84EVlb3ulbtmnNT2XmLfPsQn49
+      vO2X9ZtA12BarApv5mUv+5Jjhdy8Ugz+YcemW6cHA6uR8qzhBHiOR9KtcJHhd4/h
+      KjzKfkuVRJoYfdCZ/11yWl+vROBp1+5fEU41QcLTOyOuxDDcYphw0IJSFJyVLuF2
+      DfAt+YxBFYP7FZc6DePNbOl0CanluBncPLB6/NF/fv39RL4H1qX4C5c5ibWGCgP6
+      DtdP1SRtPC9XtSBkQMGrDyBDUKG/JgClNIjqHtpyjKoWUtLC+5WrWO3AJZHHsa9c
+      yzOAQwegujrZzUydLR6EyAwpAveW
+      -----END CERTIFICATE-----
+  ssl_policy:
+  - name: zGuard - SSL Inspection
+    order: 1
+    rank: 7
+    road_warrior_for_kerberos: false
+    action:
+      type: DECRYPT
+      showEUN: false
+      showEUNATP: false
+      overrideDefaultCertificate: false
+      decryptSubActions:
+        serverCertificates: BLOCK
+        ocspCheck: true
+        blockSslTrafficWithNoSniEnabled: false
+        minClientTLSVersion: CLIENT_TLS_1_2
+        minServerTLSVersion: SERVER_TLS_1_2
+        blockUndecrypt: false
+        http2Enabled: false
+    state: ENABLED
+    description: zGuard - SSL Inspection
+    dest_ip_groups:
+    - name: zGuard - Anthropic Claude
+    - name: zGuard - Bedrock-Anthropic
+    - name: zGuard - Bolt.new
+    - name: zGuard - Builder.io
+    - name: zGuard - DeepAI
+    - name: zGuard - ElevenLabs
+    - name: zGuard - Gamma
+    - name: zGuard - GitHub Copilot
+    - name: zGuard - GitHub Copilot Enterprise
+    - name: zGuard - Glean
+    - name: zGuard - Google Gemini
+    - name: zGuard - Google Gemini Code - FQDN
+    - name: zGuard - Google Gemini Code - Wildcard
+    - name: zGuard - Google Gemini Enterprise
+    - name: zGuard - Google Gemini Workspaces
+    - name: zGuard - Grok xAI
+    - name: zGuard - Lovable
+    - name: zGuard - MaxAI
+    - name: zGuard - Microsoft 365 Copilot
+    - name: zGuard - Mistral AI
+    - name: zGuard - Napkin AI
+    - name: zGuard - NotebookLM
+    - name: zGuard - OpenAI ChatGPT Codex
+    - name: zGuard - OpenCode
+    - name: zGuard - Perplexity
+    - name: zGuard - Vertex AI
+    - name: zGuard - Windsurf
+  forwarding_rules:
+  - name: zGuard - Forwarding
+    type: FORWARDING
+    order: 1
+    rank: 7
+    state: ENABLED
+    forward_method: PROXYCHAIN
+    description: zGuard - Forwarding
+    proxy_gateway:
+      name: zGuard - Gateway
+    dest_ip_groups:
+    - name: zGuard - Anthropic Claude
+    - name: zGuard - Bedrock-Anthropic
+    - name: zGuard - Bolt.new
+    - name: zGuard - Builder.io
+    - name: zGuard - DeepAI
+    - name: zGuard - ElevenLabs
+    - name: zGuard - Gamma
+    - name: zGuard - GitHub Copilot
+    - name: zGuard - GitHub Copilot Enterprise
+    - name: zGuard - Glean
+    - name: zGuard - Google Gemini
+    - name: zGuard - Google Gemini Code - FQDN
+    - name: zGuard - Google Gemini Code - Wildcard
+    - name: zGuard - Google Gemini Enterprise
+    - name: zGuard - Google Gemini Workspaces
+    - name: zGuard - Grok xAI
+    - name: zGuard - Lovable
+    - name: zGuard - MaxAI
+    - name: zGuard - Microsoft 365 Copilot
+    - name: zGuard - Mistral AI
+    - name: zGuard - Napkin AI
+    - name: zGuard - NotebookLM
+    - name: zGuard - OpenAI ChatGPT Codex
+    - name: zGuard - OpenCode
+    - name: zGuard - Perplexity
+    - name: zGuard - Vertex AI
+    - name: zGuard - Windsurf
+  cloud_app_control_rules:
+    ai_ml:
+    - name: zGuard - Permitted AI
+      order: 1
+      state: ENABLED
+      rank: 7
+      labels:
+      - name: zGuard - API created      
+      actions:
+      - ALLOW_AI_ML_WEB_USE
+      applications:
+      - CHATGPT_AI
+      - OPENAI
+      - GOOGLE_GEMINI
+      - MICROSOFT_COPILOT
+      - PLAYGROUND_BY_OPENAI
+      - PERPLEXITY
+      - CODEIUM
+      - CLAUDE_AI
+      - ELEVENLABS
+      - GAMMA
+      - MAXAI
+      - GROK_AI
+      - MICROSOFT_COPILOT_STUDIO
+      - GOOGLE_NOTEBOOKLM
+      - DEEPAI
+      - MISTRAL
+      - NAPKIN
+      - BOLT_NEW
+      - BUILDER_IO
+      - LOVABLE
+      - GITHUB_COPILOT
+      - PERPLEXITY_AI_APP
+      - GOOGLE_AI_STUDIO
+      - GOOGLE_LABS
+      - GROK_AI_FREE
+      - VERTEX_AI
+      - GOOGLE_AI
+      - ANTHROPIC_AI
+      - GROK_IMAGINE
+      - GOOGLE_ANTIGRAVITY
+      - MISTRAL_AI_CHAT
+      cascading_enabled: false
+      enforce_time_validity: false

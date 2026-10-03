@@ -1,0 +1,64 @@
+version: '1.0'
+zpa:
+  connector_group:
+    name: "POV - HQ - APPC_GRP"
+    description: 'POV HQ App Connector Group'
+    enabled: true
+    provisioning_key: true
+    provisioning_key_max_usage: 10
+    latitude: '45.5018869'
+    longitude: '-73.56739189999999'
+    location: Montreal, QC, Canada
+  server_group:
+    name: "POV - HQ - SRV_GRP"
+    description: 'POV - HQ Server Group'
+    enabled: true
+    dynamic_discovery: true
+    app_connector_group_name: "POV - HQ - APPC_GRP"
+  segment_group:
+    name: "POV - WILDCARD SG"
+    description: 'POV - WILDCARD Segment Group'
+    enabled: true
+  app_segments:
+  - name: "POV - WILDCARD App Segment"
+    description: 'POV Wildcard Application Segment'
+    enabled: true
+    segment_group_name: "POV - WILDCARD SG"
+    domain_names:
+    - "*.${INTERNAL_DOMAINS}"
+    tcp_port_range:
+    - from: '1'
+      to: '52'
+    - from: '54'
+      to: '65535'
+    udp_port_range:
+    - from: '1'
+      to: '52'
+    - from: '54'
+      to: '65535'
+    bypass_type: NEVER
+    icmp_access_type: PING
+    fqdn_dns_check: false
+    match_style: EXCLUSIVE
+    is_cname_enabled: true
+    server_group_name: "POV - HQ - SRV_GRP"
+  policies:
+  - name: "POV - Wildcard Access"
+    description: 'POV Wildcard App Segment GRP Access - TODO: Add IdP Group'
+    action: ALLOW
+    rule_order: '19'
+    app_segments:
+    - 'POV - WILDCARD App Segment'
+  timeout_policies: 
+  - name: Default_Rule
+    description: This is the default Timeout Policy rule
+    action: RE_AUTH
+    rule_order: '1'
+    app_segments: []
+    reauth_idle_timeout: never
+    reauth_timeout: 7d
+    custom_msg: Your access to private applications has expired
+  client_forwarding_policies: []
+  dns_search_domains:
+  - domain: "${INTERNAL_DOMAINS}"
+    capture: true

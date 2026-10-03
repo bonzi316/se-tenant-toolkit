@@ -1,0 +1,5 @@
+zscaler-sdk-python>=1.9.31
+pyyaml>=6.0.1
+pydantic>=2.0
+python-dotenv>=1.0.0
+click>=8.0.0
