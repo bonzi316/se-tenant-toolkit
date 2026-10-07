@@ -55,6 +55,7 @@ cd zscaler-pov-toolkit
 python -m venv venv
 .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+playwright install  # Required only if using zia_ai_guard_extract.py
 ```
 
 **macOS / Linux:**
@@ -64,6 +65,7 @@ cd zscaler-pov-toolkit
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+playwright install  # Required only if using zia_ai_guard_extract.py
 ```
 
 ### 2. Configure credentials
@@ -271,8 +273,7 @@ python tenant-cleanup.py -e .env.myclient --rule-label "POV - Created Rules"
 A utility script that scrapes the official Zscaler help portal to dynamically extract the list of supported AI Guard applications. 
 
 ```bash
-# Requires playwright
-pip install playwright pyyaml
+# Ensure playwright browsers are installed (see main installation steps)
 playwright install
 
 # Extract to YAML

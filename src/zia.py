@@ -111,6 +111,8 @@ def apply_prefix_and_truncate_31(name: str, prefix: str) -> str:
             prefixed_name = prefixed_name[:31]
         logger.info(f"ZIA rule/object name '{name}' with prefix was too long. Truncated uniquely to '{prefixed_name}' (31 chars).")
         
+    return prefixed_name
+
 def normalize_pem(pem_str: str) -> str:
     if not pem_str:
         return pem_str

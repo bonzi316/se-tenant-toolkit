@@ -1,8 +1,8 @@
 version: '1.0'
 zia:
   rule_labels:
-    - name: zGuard - API created
-      description: "API created rules for zGuard POV"
+  - name: zGuard - API created
+    description: API created rules for zGuard POV
   proxies:
   - name: zGuard - Proxy
     type: PROXYCHAIN
@@ -117,6 +117,8 @@ zia:
   - name: zGuard - GitHub Copilot Enterprise
     description: 'Web Browsers
 
+      GitHub in Visual Studio (VS) Code
+
 
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_FQDN
@@ -212,13 +214,17 @@ zia:
 
       M365 Desktop App (Windows and Mac)
 
+      Copilot.com (Web Browser)
+
       Copilot in Word (Desktop App and Web Browser)
+
+      Copilot in Excel (Web Browser)
 
       Copilot in Outlook (Web Browser)
 
 
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
-    type: DSTN_DOMAIN
+    type: DSTN_FQDN
     addresses:
     - substrate.office.com
     - substrate.svc.cloud.microsoft
@@ -226,6 +232,8 @@ zia:
     - api.business.githubcopilot.com
     - api.enterprise.githubcopilot.com
     - api.individual.githubcopilot.com
+    - augloop.office.com
+    - www.copilot.com
   - name: zGuard - Mistral AI
     description: 'Mistral Vibe (formerly Le Chat) backend
 
@@ -283,6 +291,22 @@ zia:
     type: DSTN_DOMAIN
     addresses:
     - perplexity.ai
+  - name: zGuard - Quillbot
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_FQDN
+    addresses:
+    - quillbot.com
+  - name: zGuard - Replit
+    description: 'Web Browsers
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_FQDN
+    addresses:
+    - sp.replit.com
   - name: zGuard - Vertex AI
     description: 'Web Browsers
 
@@ -305,7 +329,7 @@ zia:
     - server.self-serve.windsurf.com
     - server.codeium.com
   root_certificates:
-  - name: zGuard Root Cert
+  - name: zGuard Root Cert.pem
     displayName: zGuard Root Cert
     certTypes:
     - PROXY_CHAINING
@@ -379,6 +403,8 @@ zia:
     - name: zGuard - OpenAI ChatGPT Codex
     - name: zGuard - OpenCode
     - name: zGuard - Perplexity
+    - name: zGuard - Quillbot
+    - name: zGuard - Replit
     - name: zGuard - Vertex AI
     - name: zGuard - Windsurf
   forwarding_rules:
@@ -417,6 +443,8 @@ zia:
     - name: zGuard - OpenAI ChatGPT Codex
     - name: zGuard - OpenCode
     - name: zGuard - Perplexity
+    - name: zGuard - Quillbot
+    - name: zGuard - Replit
     - name: zGuard - Vertex AI
     - name: zGuard - Windsurf
   cloud_app_control_rules:
@@ -426,7 +454,7 @@ zia:
       state: ENABLED
       rank: 7
       labels:
-      - name: zGuard - API created      
+      - name: zGuard - API created
       actions:
       - ALLOW_AI_ML_WEB_USE
       applications:
@@ -436,30 +464,10 @@ zia:
       - MICROSOFT_COPILOT
       - PLAYGROUND_BY_OPENAI
       - PERPLEXITY
-      - CODEIUM
       - CLAUDE_AI
-      - ELEVENLABS
-      - GAMMA
-      - MAXAI
-      - GROK_AI
       - MICROSOFT_COPILOT_STUDIO
       - GOOGLE_NOTEBOOKLM
-      - DEEPAI
-      - MISTRAL
-      - NAPKIN
-      - BOLT_NEW
-      - BUILDER_IO
-      - LOVABLE
-      - GITHUB_COPILOT
       - PERPLEXITY_AI_APP
-      - GOOGLE_AI_STUDIO
-      - GOOGLE_LABS
-      - GROK_AI_FREE
-      - VERTEX_AI
-      - GOOGLE_AI
       - ANTHROPIC_AI
-      - GROK_IMAGINE
-      - GOOGLE_ANTIGRAVITY
-      - MISTRAL_AI_CHAT
       cascading_enabled: false
       enforce_time_validity: false
