@@ -1329,10 +1329,40 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                                 create_fwd_name = fp.name or ""
                                 break
 
-                        created_ok = _create_app_profile_oneapi(client, prefixed_name, platform, logger, forwarding_profile_id=create_fwd_id, forwarding_profile_name=create_fwd_name)
+                        created_ok = False
+                        if not dry_run:
+                            created_ok = _create_app_profile_oneapi(client, prefixed_name, platform, logger, forwarding_profile_id=create_fwd_id, forwarding_profile_name=create_fwd_name)
+                        
                         if not created_ok:
-                            logger.error(f"Creation of App Profile '{prefixed_name}' failed. Skipping updates for this profile.")
-                            continue
+                            if dry_run:
+                                logger.warning(f"[DRY-RUN] App Profile '{prefixed_name}' must be created manually.")
+                                results["app_profiles"].append({"name": prefixed_name, "status": "Manual Creation Required"})
+                                continue
+                            else:
+                                logger.warning(f"\n[ACTION REQUIRED] App Profiles cannot be reliably created via the API on this tenant.")
+                                print(f"\nPlease log in to the Zscaler Client Connector (ZCC) Portal UI and manually create an App Profile with the EXACT name:")
+                                print(f"   Name: {prefixed_name}")
+                                print(f"   Platform: {platform}")
+                                
+                                while True:
+                                    user_input = input(f"\nHave you created the App Profile '{prefixed_name}' in the UI? (y/n/exit): ").strip().lower()
+                                    if user_input == 'exit':
+                                        logger.error("User exited during App Profile creation step.")
+                                        raise Exception("Script aborted by user.")
+                                    elif user_input in ['y', 'yes']:
+                                        print("Verifying App Profile exists...")
+                                        v_profiles, _, v_err = client.zcc.web_policy.list_by_company(query_params={"device_type": platform.lower()})
+                                        if not v_err and v_profiles:
+                                            found_verify = next((p for p in v_profiles if getattr(p, 'name', '') and p.name.lower() == prefixed_name.lower()), None)
+                                            if found_verify:
+                                                logger.info(f"Verified! App Profile '{prefixed_name}' found with ID {found_verify.id}.")
+                                                break
+                                            else:
+                                                logger.warning(f"Could not find App Profile '{prefixed_name}'. Please ensure the name matches exactly.")
+                                        else:
+                                            logger.warning("Failed to fetch app profiles for verification. Please try again.")
+                                    else:
+                                        print("Waiting for you to create it...")
                             
                         # Re-fetch profiles to get the newly created ID
                         profiles, _, err = client.zcc.web_policy.list_by_company(query_params={"device_type": platform.lower()})
