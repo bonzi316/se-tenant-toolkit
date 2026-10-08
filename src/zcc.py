@@ -344,13 +344,13 @@ def _create_app_profile_oneapi(client, name: str, platform: str, logger, forward
     )
     template_dict = None
     # Profiles to skip as clone templates: placeholder/dummy names are not valid bases
-    SKIP_TEMPLATE_NAMES = {"dummy", "default", "default policy"}
+    SKIP_TEMPLATE_NAMES = {"dummy"}
     if not err and existing:
         for p in existing:
             p_dict = p.as_dict() if hasattr(p, "as_dict") else dict(p)
             raw_id = p_dict.get("id") or p_dict.get("policy_id") or 0
             p_name = (p_dict.get("name") or "").strip().lower()
-            if str(raw_id).replace(".", "").replace("0", "") != "" and p_name not in SKIP_TEMPLATE_NAMES:
+            if p_name not in SKIP_TEMPLATE_NAMES:
                 template_dict = p_dict
                 logger.info(
                     f"Using existing App Profile '{p_dict.get('name')}' (ID {raw_id}) as clone template."
@@ -377,6 +377,7 @@ def _create_app_profile_oneapi(client, name: str, platform: str, logger, forward
             "ziaPostureConfig", "zia_posture_config",
             "onNetPolicy", "on_net_policy",
             "appServices", "app_services",
+            "zccFailCloseSettingsThumbPrint", "zcc_fail_close_settings_thumb_print",
         }
 
         def _strip_identity(obj):
@@ -389,8 +390,11 @@ def _create_app_profile_oneapi(client, name: str, platform: str, logger, forward
         payload = _strip_identity(payload)
         # Also clear the thumbprint — it is cryptographically tied to the source profile
         payload.pop("zccFailCloseSettingsThumbPrint", None)
+        payload.pop("zcc_fail_close_settings_thumb_print", None)
         if isinstance(payload.get("policyExtension"), dict):
             payload["policyExtension"].pop("zccFailCloseSettingsThumbPrint", None)
+        if isinstance(payload.get("policy_extension"), dict):
+            payload["policy_extension"].pop("zcc_fail_close_settings_thumb_print", None)
     else:
         # --- Fallback: use hardcoded blank base ---
         logger.warning(
@@ -1119,6 +1123,7 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
 
             # Match against existing forwarding profiles by raw or prefixed name
             found_profile = None
+            just_created = False
             search_names = {raw_name.lower(), prefixed_name.lower(), fp_cfg.search_name.lower()}
             for p in profiles:
                 if p.name and p.name.lower() in search_names:
@@ -1140,18 +1145,25 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                     # Add to local profiles list to prevent extra API requests
                     profiles.append(new_profile)
                     found_profile = new_profile
+                    just_created = True
 
             if found_profile:
-                fwd_id = found_profile.id
+                fwd_id = getattr(found_profile, 'id', found_profile.get('id') if isinstance(found_profile, dict) else None)
                 processed_fwds[raw_name.lower()] = fwd_id
                 processed_fwds[prefixed_name.lower()] = fwd_id
                 processed_fwds[fp_cfg.search_name.lower()] = fwd_id
-                if found_profile.name:
-                    processed_fwds[found_profile.name.lower()] = fwd_id
+                found_name = getattr(found_profile, 'name', found_profile.get('name') if isinstance(found_profile, dict) else None)
+                if found_name:
+                    processed_fwds[found_name.lower()] = fwd_id
 
                 if str(fwd_id) == "0":
                     logger.info("Forwarding Profile with ID 0 is the read-only system default profile. Skipping update but recorded mapping.")
                     results["forwarding_profiles"].append({"id": fwd_id, "name": prefixed_name, "status": "skipped_default"})
+                    continue
+                    
+                if just_created:
+                    logger.info(f"Forwarding Profile '{prefixed_name}' was just created with settings applied. Skipping immediate update.")
+                    results["forwarding_profiles"].append({"id": str(fwd_id), "name": prefixed_name})
                     continue
 
                 # Prepare update payload
@@ -1206,6 +1218,8 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                     if cleaned_original == cleaned_new:
                         logger.info(f"Forwarding Profile '{prefixed_name}' is already up-to-date. Skipping API update.")
                     else:
+                        import json
+                        logger.debug(f"Payload sent to update_forwarding_profile: {json.dumps(profile_payload)}")
                         _, response, err = client.zcc.forwarding_profile.update_forwarding_profile(**profile_payload)
                         if err:
                             resp_body = getattr(response, "_body", getattr(response, "text", None)) if response else None
