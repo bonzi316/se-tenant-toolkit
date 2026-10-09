@@ -1433,6 +1433,12 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                     update_params.pop("forwarding_profile_name", None)
                     update_params.pop("description", None)
                 
+                    policy_ext = update_params.pop("policy_extension", None)
+                    if policy_ext and isinstance(policy_ext, dict):
+                        for ext_k, ext_v in policy_ext.items():
+                            if ext_v is not None:
+                                update_params[ext_k] = ext_v
+
                     # Exclude read-only/invalid/blacklisted payload attributes
                     blacklisted_keys = [
                         'on_net_policy', 'onNetPolicy', 'install_ssl_certs', 'installSslCerts',
@@ -1449,13 +1455,9 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                     ]
                     for k in blacklisted_keys:
                         update_params.pop(k, None)
-
-                    # Flatten policy_extension if present (for SDK compatibility)
-                    policy_ext = update_params.pop("policy_extension", None)
-                    if policy_ext and isinstance(policy_ext, dict):
-                        for ext_k, ext_v in policy_ext.items():
-                            if ext_v is not None:
-                                update_params[ext_k] = ext_v
+                                
+                    # Convert to camel case to avoid "Blacklisted parameters" errors from snake_case keys
+                    update_params = to_camel_wire_dict(update_params)
                 
                     # ZCC API uses policyId in PATCH body and forwardingProfileId
                     update_params["policyId"] = ap_id
@@ -1463,7 +1465,7 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                         update_params["forwardingProfileId"] = target_fwd_id
 
                     # Resolve ZIA posture config ID if posture_profile_name is present
-                    posture_prof_name = update_params.pop("posture_profile_name", None)
+                    posture_prof_name = update_params.pop("postureProfileName", None) or update_params.pop("posture_profile_name", None)
                     if posture_prof_name:
                         target_posture_id = posture_map.get(posture_prof_name.lower())
                         if not target_posture_id:
@@ -1479,8 +1481,8 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                         else:
                             logger.warning(f"Referenced posture profile '{posture_prof_name}' could not be resolved to an ID on the tenant.")
                 
-                    # Ensure device_type is normalized and set to existing value if not provided
-                    dev_type = update_params.get("device_type") or update_params.get("deviceType")
+                    # Ensure deviceType is normalized and set to existing value if not provided
+                    dev_type = update_params.get("deviceType") or update_params.get("device_type")
                     if not dev_type:
                         if hasattr(found_ap, "device_type") and found_ap.device_type:
                             dev_type = found_ap.device_type
@@ -1490,6 +1492,8 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                             dev_type = dev_type.replace("DEVICE_TYPE_", "").lower()
                             if dev_type == "mac":
                                 dev_type = "macos"
+                        # Keep it as device_type so the SDK's zcc_param_mapper can convert it correctly
+                        update_params.pop("deviceType", None)
                         update_params["device_type"] = dev_type
 
                     if dry_run:
@@ -1526,18 +1530,26 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                         else:
                             _, _, err = client.zcc.application_profiles.update_application_profile(profile_id=ap_id, **update_params)
                             if err:
-                                if "NOTIFICATION_TEMPLATE_NOT_PRESENT" in str(err) and "notification_template_id" in update_params:
+                                if "NOTIFICATION_TEMPLATE_NOT_PRESENT" in str(err) and "notificationTemplateId" in update_params:
                                     logger.warning(
-                                        f"Notification Template ID '{update_params['notification_template_id']}' is not present on the target tenant. "
+                                        f"Notification Template ID '{update_params['notificationTemplateId']}' is not present on the target tenant. "
                                         f"Retrying Application Profile '{prefixed_name}' update without this template linkage."
                                     )
-                                    update_params.pop("notification_template_id", None)
+                                    update_params.pop("notificationTemplateId", None)
                                     _, _, err = client.zcc.application_profiles.update_application_profile(profile_id=ap_id, **update_params)
-                                
                                 if err:
-                                    logger.error(f"Failed to update Application Profile: {err}")
-                                    raise Exception(f"Failed to update Application Profile: {err}")
-                            logger.info(f"Application Profile '{ap_cfg.search_name}' updated successfully to '{prefixed_name}'.")
-                            results["app_profiles"].append({"id": ap_id, "name": prefixed_name, "action": "update"})
+                                    if "INTERNAL_SERVER_ERROR" in str(err):
+                                        logger.error(
+                                            f"[ACTION REQUIRED] The ZCC Public API returned a 500 Internal Server Error while attempting to update App Profile '{prefixed_name}'. "
+                                            "This is a known Zscaler backend bug on certain tenants where valid update payloads cause the API to crash. "
+                                            "You must manually verify or configure this App Profile in the ZCC Portal UI."
+                                        )
+                                        results["app_profiles"].append({"id": ap_id, "name": prefixed_name, "action": "manual_update_required_due_to_api_bug"})
+                                    else:
+                                        logger.error(f"Failed to update Application Profile: {err}")
+                                        raise Exception(f"Failed to update Application Profile: {err}")
+                                else:
+                                    logger.info(f"Application Profile '{ap_cfg.search_name}' updated successfully to '{prefixed_name}'.")
+                                    results["app_profiles"].append({"id": ap_id, "name": prefixed_name, "action": "update"})
                     
     return results
