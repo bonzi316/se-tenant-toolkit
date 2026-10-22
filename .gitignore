@@ -86,4 +86,5 @@ zcc_export_snap-*.yaml
 zia_export_snap-*.yaml
 
 # PAC files exported at root level (use configs/scratch/ instead)
-pac_files/
+/pac_files/
+debug_out.txt

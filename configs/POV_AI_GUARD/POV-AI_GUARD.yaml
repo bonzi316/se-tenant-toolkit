@@ -1,0 +1,1450 @@
+version: '1.0'
+aiguard:
+  policies:
+  - name: AI Guard Users Inspection
+    inputDetectorPolicies:
+    - detector: toxicity
+      enabled: true
+      severity: CRITICAL
+      configuration:
+        action: BLOCK
+        threshold: 0.87
+    - detector: prompt_injection
+      enabled: true
+      severity: HIGH
+      configuration:
+        action: BLOCK
+        threshold: 0.8
+    - detector: gibberish
+      enabled: true
+      severity: LOW
+      configuration:
+        action: BLOCK
+        threshold: 0.9
+    - detector: invisible_text
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+    - detector: code
+      enabled: true
+      severity: LOW
+      configuration:
+        languages:
+        - action: DETECT
+          language: C
+        - action: DETECT
+          language: C#
+        - action: DETECT
+          language: C++
+        - action: DETECT
+          language: CLI Command
+        - action: DETECT
+          language: COBOL
+        - action: DETECT
+          language: DB Logs
+        - action: DETECT
+          language: Erlang
+        - action: DETECT
+          language: Fortran
+        - action: DETECT
+          language: Go
+        - action: DETECT
+          language: Java
+        - action: DETECT
+          language: JavaScript
+        - action: DETECT
+          language: Kotlin
+        - action: DETECT
+          language: Lua
+        - action: DETECT
+          language: Mathematica/Wolfram Language
+        - action: DETECT
+          language: PHP
+        - action: DETECT
+          language: Pascal
+        - action: DETECT
+          language: Perl
+        - action: DETECT
+          language: R
+        - action: DETECT
+          language: Ruby
+        - action: DETECT
+          language: Rust
+        - action: DETECT
+          language: Scala
+        - action: DETECT
+          language: SQL
+        - action: DETECT
+          language: Swift
+        - action: DETECT
+          language: Visual Basic .NET
+        - action: DETECT
+          language: jq
+        - action: BLOCK
+          language: Python
+        threshold: 0.6
+        defaultAction: DETECT
+    - detector: brand_and_reputation_risk
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.85
+    - detector: secrets
+      enabled: true
+      severity: LOW
+      configuration:
+        secretTypes:
+        - action: BLOCK
+          secretType: AMAZON_MWS_AUTH_TOKEN
+        - action: BLOCK
+          secretType: GITHUB_TOKEN
+        - action: BLOCK
+          secretType: GOOGLE_API_KEY
+        - action: BLOCK
+          secretType: GOOGLE_OAUTH_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: JWT_TOKEN
+        - action: BLOCK
+          secretType: PAYPAL_BRAINTREE_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: PICATIC_API_KEY
+        - action: BLOCK
+          secretType: PAN_BASED_CARDS
+        - action: BLOCK
+          secretType: PRIVATE_KEY
+        - action: BLOCK
+          secretType: SENDGRID_API_KEY
+        - action: BLOCK
+          secretType: SLACK_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: SLACK_WEBHOOK
+        - action: BLOCK
+          secretType: SQUARE_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: SQUARE_OAUTH_SECRET
+        - action: BLOCK
+          secretType: STRIPE_API_KEY
+        - action: BLOCK
+          secretType: TWO_FACTOR_TOKEN
+        - action: DETECT
+          secretType: US_GOVERNMENT_IDS
+        anonymization: NONE
+        defaultAction: DETECT
+    - detector: language
+      enabled: true
+      severity: LOW
+      configuration:
+        languages:
+        - action: DETECT
+          languageCode: ar
+        - action: DETECT
+          languageCode: bg
+        - action: DETECT
+          languageCode: zh
+        - action: DETECT
+          languageCode: nl
+        - action: DETECT
+          languageCode: en
+        - action: DETECT
+          languageCode: fr
+        - action: DETECT
+          languageCode: de
+        - action: DETECT
+          languageCode: el
+        - action: DETECT
+          languageCode: hi
+        - action: DETECT
+          languageCode: it
+        - action: DETECT
+          languageCode: ja
+        - action: DETECT
+          languageCode: pl
+        - action: DETECT
+          languageCode: pt
+        - action: DETECT
+          languageCode: ru
+        - action: DETECT
+          languageCode: es
+        - action: DETECT
+          languageCode: th
+        - action: DETECT
+          languageCode: tr
+        - action: DETECT
+          languageCode: ur
+        - action: DETECT
+          languageCode: vi
+        threshold: 0.6
+        defaultAction: DETECT
+    - detector: legal_advice
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.86
+    - detector: pii_deepscan
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.87
+    - detector: pii
+      enabled: true
+      severity: LOW
+      configuration:
+        entities:
+        - action: DETECT
+          entityType: CREDIT_CARD
+        - action: DETECT
+          entityType: IBAN_CODE
+        - action: DETECT
+          entityType: US_BANK_NUMBER
+        - action: DETECT
+          entityType: US_ITIN
+        - action: DETECT
+          entityType: US_PASSPORT
+        - action: DETECT
+          entityType: US_SSN
+        - action: DETECT
+          entityType: SWIFT_CODE
+        - action: DETECT
+          entityType: DATE_OF_BIRTH
+        - action: ALLOW
+          entityType: IP_ADDRESS
+        - action: BLOCK
+          entityType: PHONE_NUMBER
+        - action: DETECT
+          entityType: JP_MY_NUMBER
+        - action: DETECT
+          entityType: JP_PASSPORT
+        - action: DETECT
+          entityType: CRYPTO
+        - action: DETECT
+          entityType: PERSON
+        - action: DETECT
+          entityType: US_DRIVER_LICENSE
+        - action: DETECT
+          entityType: DATE_TIME
+        - action: DETECT
+          entityType: URL
+        - action: DETECT
+          entityType: MEDICAL_LICENSE
+        - action: DETECT
+          entityType: STREET_ADDRESS
+        - action: DETECT
+          entityType: US_DEA_NUMBER
+        - action: ALLOW
+          entityType: EMAIL_ADDRESS
+        - action: DETECT
+          entityType: LOCATION
+        threshold: 0.5
+        anonymization: REPLACE
+        defaultAction: DETECT
+        replaceWithMaskedContent: true
+    - detector: prompt_tags
+      enabled: true
+      severity: LOW
+      configuration:
+        tags:
+        - tag: ART_AND_CULTURE
+          action: DETECT
+        - tag: MEDIA_AND_COMMUNICATIONS
+          action: DETECT
+        - tag: EDUCATION_AND_TRAINING
+          action: DETECT
+        - tag: GOVERNMENT_AND_POLITICS
+          action: DETECT
+        - tag: SHOPPING_AND_RETAIL
+          action: DETECT
+        - tag: SCIENCE_AND_TECHNOLOGY
+          action: DETECT
+        - tag: TRAVEL
+          action: DETECT
+        - tag: RELIGION
+          action: DETECT
+        - tag: MARKETING
+          action: DETECT
+        - tag: CUSTOMER_SERVICE
+          action: DETECT
+        - tag: JOBS_EMPLOYMENT_HR
+          action: BLOCK
+        threshold: 0.55
+        defaultAction: DETECT
+    - detector: pattern
+      enabled: true
+      severity: LOW
+      configuration:
+        defaultAction: DETECT
+        regexPatterns:
+        - name: cold pizza
+          action: BLOCK
+          pattern: 'cold pizza
+
+            pizza froide'
+    - detector: malicious_url
+      enabled: true
+      severity: LOW
+      configuration:
+        action: BLOCK
+    - detector: finance_advice
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.3
+    outputDetectorPolicies:
+    - detector: malicious_url
+      enabled: true
+      severity: LOW
+      configuration:
+        action: BLOCK
+    - detector: gibberish
+      enabled: true
+      severity: LOW
+      configuration:
+        action: BLOCK
+        threshold: 0.9
+    - detector: url_reachability
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+    - detector: invisible_text
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+    - detector: code
+      enabled: true
+      severity: LOW
+      configuration:
+        languages:
+        - action: BLOCK
+          language: C
+        - action: BLOCK
+          language: C#
+        - action: BLOCK
+          language: C++
+        - action: BLOCK
+          language: DB Logs
+        - action: BLOCK
+          language: Erlang
+        - action: BLOCK
+          language: Go
+        - action: BLOCK
+          language: Java
+        - action: BLOCK
+          language: Kotlin
+        - action: BLOCK
+          language: Lua
+        - action: BLOCK
+          language: PHP
+        - action: BLOCK
+          language: Pascal
+        - action: BLOCK
+          language: Perl
+        - action: BLOCK
+          language: Python
+        - action: BLOCK
+          language: R
+        - action: BLOCK
+          language: Scala
+        - action: BLOCK
+          language: SQL
+        - action: BLOCK
+          language: Swift
+        - action: BLOCK
+          language: Visual Basic .NET
+        - action: DETECT
+          language: Mathematica/Wolfram Language
+        - action: DETECT
+          language: jq
+        - action: DETECT
+          language: JavaScript
+        - action: DETECT
+          language: Fortran
+        - action: DETECT
+          language: COBOL
+        - action: ALLOW
+          language: Rust
+        - action: BLOCK
+          language: Ruby
+        - action: BLOCK
+          language: CLI Command
+        threshold: 0.6
+        defaultAction: DETECT
+    - detector: response_tags
+      enabled: true
+      severity: LOW
+      configuration:
+        tags:
+        - tag: ART_AND_CULTURE
+          action: DETECT
+        - tag: MEDIA_AND_COMMUNICATIONS
+          action: DETECT
+        - tag: EDUCATION_AND_TRAINING
+          action: DETECT
+        - tag: GOVERNMENT_AND_POLITICS
+          action: DETECT
+        - tag: SHOPPING_AND_RETAIL
+          action: DETECT
+        - tag: SCIENCE_AND_TECHNOLOGY
+          action: DETECT
+        - tag: TRAVEL
+          action: DETECT
+        - tag: RELIGION
+          action: DETECT
+        - tag: MARKETING
+          action: DETECT
+        - tag: CUSTOMER_SERVICE
+          action: DETECT
+        - tag: JOBS_EMPLOYMENT_HR
+          action: BLOCK
+        threshold: 0.3
+        defaultAction: DETECT
+    - detector: secrets
+      enabled: true
+      severity: LOW
+      configuration:
+        secretTypes:
+        - action: BLOCK
+          secretType: AMAZON_MWS_AUTH_TOKEN
+        - action: BLOCK
+          secretType: GITHUB_TOKEN
+        - action: BLOCK
+          secretType: GOOGLE_API_KEY
+        - action: BLOCK
+          secretType: GOOGLE_OAUTH_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: JWT_TOKEN
+        - action: BLOCK
+          secretType: PAYPAL_BRAINTREE_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: PICATIC_API_KEY
+        - action: BLOCK
+          secretType: PAN_BASED_CARDS
+        - action: BLOCK
+          secretType: PRIVATE_KEY
+        - action: BLOCK
+          secretType: SENDGRID_API_KEY
+        - action: BLOCK
+          secretType: SLACK_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: SLACK_WEBHOOK
+        - action: BLOCK
+          secretType: SQUARE_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: SQUARE_OAUTH_SECRET
+        - action: BLOCK
+          secretType: STRIPE_API_KEY
+        - action: BLOCK
+          secretType: TWO_FACTOR_TOKEN
+        - action: DISABLE
+          secretType: US_GOVERNMENT_IDS
+        anonymization: NONE
+        defaultAction: DETECT
+    description: ''
+  - name: AI Lab Policy - Users
+    inputDetectorPolicies:
+    - detector: pii
+      enabled: true
+      severity: LOW
+      configuration:
+        entities:
+        - action: DETECT
+          entityType: EMAIL_ADDRESS
+        - action: DETECT
+          entityType: IP_ADDRESS
+        - action: DETECT
+          entityType: PHONE_NUMBER
+        - action: DETECT
+          entityType: IBAN_CODE
+        - action: DETECT
+          entityType: US_BANK_NUMBER
+        - action: DETECT
+          entityType: US_ITIN
+        - action: DETECT
+          entityType: US_PASSPORT
+        - action: DETECT
+          entityType: SWIFT_CODE
+        - action: DETECT
+          entityType: DATE_OF_BIRTH
+        - action: BLOCK
+          entityType: CREDIT_CARD
+        - action: BLOCK
+          entityType: US_SSN
+        - action: DETECT
+          entityType: JP_MY_NUMBER
+        - action: DETECT
+          entityType: JP_PASSPORT
+        - action: DETECT
+          entityType: CRYPTO
+        - action: DETECT
+          entityType: LOCATION
+        - action: DETECT
+          entityType: PERSON
+        - action: DETECT
+          entityType: US_DRIVER_LICENSE
+        - action: DETECT
+          entityType: DATE_TIME
+        - action: DETECT
+          entityType: URL
+        - action: DETECT
+          entityType: MEDICAL_LICENSE
+        - action: DETECT
+          entityType: STREET_ADDRESS
+        - action: DETECT
+          entityType: US_DEA_NUMBER
+        threshold: 0.5
+        anonymization: NONE
+        defaultAction: DETECT
+        replaceWithMaskedContent: false
+    - detector: secrets
+      enabled: true
+      severity: LOW
+      configuration:
+        secretTypes:
+        - action: DETECT
+          secretType: AMAZON_MWS_AUTH_TOKEN
+        - action: DETECT
+          secretType: GOOGLE_OAUTH_ACCESS_TOKEN
+        - action: DETECT
+          secretType: PAYPAL_BRAINTREE_ACCESS_TOKEN
+        - action: DETECT
+          secretType: PICATIC_API_KEY
+        - action: DETECT
+          secretType: PAN_BASED_CARDS
+        - action: DETECT
+          secretType: SENDGRID_API_KEY
+        - action: DETECT
+          secretType: SLACK_ACCESS_TOKEN
+        - action: DETECT
+          secretType: SLACK_WEBHOOK
+        - action: DETECT
+          secretType: SQUARE_ACCESS_TOKEN
+        - action: DETECT
+          secretType: SQUARE_OAUTH_SECRET
+        - action: DETECT
+          secretType: STRIPE_API_KEY
+        - action: DETECT
+          secretType: TWO_FACTOR_TOKEN
+        - action: DISABLE
+          secretType: US_GOVERNMENT_IDS
+        - action: BLOCK
+          secretType: PRIVATE_KEY
+        - action: BLOCK
+          secretType: GITHUB_TOKEN
+        - action: BLOCK
+          secretType: GOOGLE_API_KEY
+        - action: BLOCK
+          secretType: JWT_TOKEN
+        anonymization: NONE
+        defaultAction: DETECT
+    - detector: prompt_injection
+      enabled: true
+      severity: LOW
+      configuration:
+        action: BLOCK
+        threshold: 0.8
+    outputDetectorPolicies:
+    - detector: code
+      enabled: true
+      severity: LOW
+      configuration:
+        languages:
+        - action: DETECT
+          language: C
+        - action: DETECT
+          language: C#
+        - action: DETECT
+          language: C++
+        - action: DETECT
+          language: CLI Command
+        - action: DETECT
+          language: COBOL
+        - action: DETECT
+          language: DB Logs
+        - action: DETECT
+          language: Erlang
+        - action: DETECT
+          language: Fortran
+        - action: DETECT
+          language: Go
+        - action: DETECT
+          language: Java
+        - action: DETECT
+          language: JavaScript
+        - action: DETECT
+          language: Kotlin
+        - action: DETECT
+          language: Lua
+        - action: DETECT
+          language: Mathematica/Wolfram Language
+        - action: DETECT
+          language: PHP
+        - action: DETECT
+          language: Pascal
+        - action: DETECT
+          language: Perl
+        - action: DETECT
+          language: R
+        - action: DETECT
+          language: Ruby
+        - action: DETECT
+          language: Rust
+        - action: DETECT
+          language: Scala
+        - action: DETECT
+          language: SQL
+        - action: DETECT
+          language: Swift
+        - action: DETECT
+          language: Visual Basic .NET
+        - action: DETECT
+          language: jq
+        - action: BLOCK
+          language: Python
+        threshold: 0.6
+        defaultAction: DETECT
+    description: ''
+  - name: Internal Chatbot - Run 1
+    inputDetectorPolicies:
+    - detector: personal_data
+      enabled: true
+      severity: MEDIUM
+      configuration:
+        tags: null
+        action: DETECT
+        entities: null
+        languages: null
+        threshold: 0.7
+        competitors: null
+        secretTypes: null
+        customTopics: null
+        anonymization: null
+        defaultAction: null
+        regexPatterns: null
+        topicDefinition: null
+    - detector: prompt_injection
+      enabled: true
+      severity: MEDIUM
+      configuration:
+        tags: null
+        action: DETECT
+        entities: null
+        languages: null
+        threshold: 0.7
+        competitors: null
+        secretTypes: null
+        customTopics: null
+        anonymization: null
+        defaultAction: null
+        regexPatterns: null
+        topicDefinition: null
+    - detector: toxicity
+      enabled: true
+      severity: MEDIUM
+      configuration:
+        tags: null
+        action: DETECT
+        entities: null
+        languages: null
+        threshold: 0.7
+        competitors: null
+        secretTypes: null
+        customTopics: null
+        anonymization: null
+        defaultAction: null
+        regexPatterns: null
+        topicDefinition: null
+    outputDetectorPolicies:
+    - detector: personal_data
+      enabled: true
+      severity: MEDIUM
+      configuration:
+        tags: null
+        action: DETECT
+        entities: null
+        languages: null
+        threshold: 0.7
+        competitors: null
+        secretTypes: null
+        customTopics: null
+        anonymization: null
+        defaultAction: null
+        regexPatterns: null
+        topicDefinition: null
+    description: Automatically generated from red teaming policy configuration
+  - name: Internal Chatbot
+    inputDetectorPolicies:
+    - detector: secrets
+      enabled: false
+      severity: LOW
+      configuration:
+        secretTypes:
+        - action: DETECT
+          secretType: AMAZON_MWS_AUTH_TOKEN
+        - action: DETECT
+          secretType: GITHUB_TOKEN
+        - action: DETECT
+          secretType: GOOGLE_API_KEY
+        - action: DETECT
+          secretType: GOOGLE_OAUTH_ACCESS_TOKEN
+        - action: DETECT
+          secretType: JWT_TOKEN
+        - action: DETECT
+          secretType: PAYPAL_BRAINTREE_ACCESS_TOKEN
+        - action: DETECT
+          secretType: PICATIC_API_KEY
+        - action: DETECT
+          secretType: PAN_BASED_CARDS
+        - action: DETECT
+          secretType: PRIVATE_KEY
+        - action: DETECT
+          secretType: SENDGRID_API_KEY
+        - action: DETECT
+          secretType: SLACK_ACCESS_TOKEN
+        - action: DETECT
+          secretType: SLACK_WEBHOOK
+        - action: DETECT
+          secretType: SQUARE_ACCESS_TOKEN
+        - action: DETECT
+          secretType: SQUARE_OAUTH_SECRET
+        - action: DETECT
+          secretType: STRIPE_API_KEY
+        - action: DETECT
+          secretType: TWO_FACTOR_TOKEN
+        - action: DISABLE
+          secretType: US_GOVERNMENT_IDS
+        anonymization: NONE
+        defaultAction: DETECT
+    - detector: language
+      enabled: true
+      severity: LOW
+      configuration:
+        languages:
+        - action: DETECT
+          languageCode: ar
+        - action: DETECT
+          languageCode: bg
+        - action: DETECT
+          languageCode: zh
+        - action: DETECT
+          languageCode: nl
+        - action: DETECT
+          languageCode: en
+        - action: DETECT
+          languageCode: fr
+        - action: DETECT
+          languageCode: de
+        - action: DETECT
+          languageCode: el
+        - action: DETECT
+          languageCode: hi
+        - action: DETECT
+          languageCode: it
+        - action: DETECT
+          languageCode: ja
+        - action: DETECT
+          languageCode: pl
+        - action: DETECT
+          languageCode: pt
+        - action: DETECT
+          languageCode: ru
+        - action: DETECT
+          languageCode: es
+        - action: DETECT
+          languageCode: th
+        - action: DETECT
+          languageCode: tr
+        - action: DETECT
+          languageCode: ur
+        - action: DETECT
+          languageCode: vi
+        threshold: 0.6
+        defaultAction: DETECT
+    outputDetectorPolicies: []
+    description: ''
+  - name: DAS Policy
+    inputDetectorPolicies:
+    - detector: gibberish
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.9
+    - detector: brand_and_reputation_risk
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.85
+    - detector: intellectual_property
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.7
+        sensitiveContext: 'AI
+
+          Banking'
+    - detector: invisible_text
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+    - detector: language
+      enabled: true
+      severity: LOW
+      configuration:
+        languages:
+        - action: DETECT
+          languageCode: ar
+        - action: DETECT
+          languageCode: bg
+        - action: DETECT
+          languageCode: zh
+        - action: DETECT
+          languageCode: nl
+        - action: DETECT
+          languageCode: en
+        - action: DETECT
+          languageCode: fr
+        - action: DETECT
+          languageCode: de
+        - action: DETECT
+          languageCode: el
+        - action: DETECT
+          languageCode: hi
+        - action: DETECT
+          languageCode: it
+        - action: DETECT
+          languageCode: ja
+        - action: DETECT
+          languageCode: pl
+        - action: DETECT
+          languageCode: pt
+        - action: DETECT
+          languageCode: ru
+        - action: DETECT
+          languageCode: es
+        - action: DETECT
+          languageCode: th
+        - action: DETECT
+          languageCode: tr
+        - action: DETECT
+          languageCode: ur
+        - action: DETECT
+          languageCode: vi
+        threshold: 0.6
+        defaultAction: DETECT
+    - detector: legal_advice
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.86
+    - detector: malicious_url
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+    - detector: personal_data
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.8
+    - detector: pii
+      enabled: true
+      severity: LOW
+      configuration:
+        entities:
+        - action: DETECT
+          entityType: CREDIT_CARD
+        - action: DETECT
+          entityType: EMAIL_ADDRESS
+        - action: DETECT
+          entityType: IP_ADDRESS
+        - action: DETECT
+          entityType: PHONE_NUMBER
+        - action: DETECT
+          entityType: IBAN_CODE
+        - action: DETECT
+          entityType: US_BANK_NUMBER
+        - action: DETECT
+          entityType: US_ITIN
+        - action: DETECT
+          entityType: US_PASSPORT
+        - action: DETECT
+          entityType: US_SSN
+        - action: DETECT
+          entityType: SWIFT_CODE
+        - action: DETECT
+          entityType: DATE_OF_BIRTH
+        - action: DETECT
+          entityType: JP_MY_NUMBER
+        - action: DETECT
+          entityType: JP_PASSPORT
+        - action: DETECT
+          entityType: CRYPTO
+        - action: DETECT
+          entityType: LOCATION
+        - action: DETECT
+          entityType: PERSON
+        - action: DETECT
+          entityType: US_DRIVER_LICENSE
+        - action: DETECT
+          entityType: DATE_TIME
+        - action: DETECT
+          entityType: URL
+        - action: DETECT
+          entityType: MEDICAL_LICENSE
+        - action: DETECT
+          entityType: STREET_ADDRESS
+        - action: DETECT
+          entityType: US_DEA_NUMBER
+        threshold: 0.5
+        anonymization: NONE
+        defaultAction: DETECT
+        replaceWithMaskedContent: false
+    - detector: prompt_injection
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.8
+    - detector: prompt_tags
+      enabled: true
+      severity: LOW
+      configuration:
+        tags:
+        - tag: ART_AND_CULTURE
+          action: DETECT
+        - tag: MEDIA_AND_COMMUNICATIONS
+          action: DETECT
+        - tag: EDUCATION_AND_TRAINING
+          action: DETECT
+        - tag: GOVERNMENT_AND_POLITICS
+          action: DETECT
+        - tag: JOBS_EMPLOYMENT_HR
+          action: DETECT
+        - tag: SHOPPING_AND_RETAIL
+          action: DETECT
+        - tag: SCIENCE_AND_TECHNOLOGY
+          action: DETECT
+        - tag: TRAVEL
+          action: DETECT
+        - tag: RELIGION
+          action: DETECT
+        - tag: MARKETING
+          action: DETECT
+        - tag: CUSTOMER_SERVICE
+          action: DETECT
+        threshold: 0.8
+        defaultAction: DETECT
+    - detector: secrets
+      enabled: true
+      severity: LOW
+      configuration:
+        secretTypes:
+        - action: BLOCK
+          secretType: AMAZON_MWS_AUTH_TOKEN
+        - action: BLOCK
+          secretType: GITHUB_TOKEN
+        - action: BLOCK
+          secretType: GOOGLE_API_KEY
+        - action: BLOCK
+          secretType: GOOGLE_OAUTH_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: JWT_TOKEN
+        - action: BLOCK
+          secretType: PAYPAL_BRAINTREE_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: PICATIC_API_KEY
+        - action: BLOCK
+          secretType: PAN_BASED_CARDS
+        - action: BLOCK
+          secretType: PRIVATE_KEY
+        - action: BLOCK
+          secretType: SENDGRID_API_KEY
+        - action: BLOCK
+          secretType: SLACK_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: SLACK_WEBHOOK
+        - action: BLOCK
+          secretType: SQUARE_ACCESS_TOKEN
+        - action: BLOCK
+          secretType: SQUARE_OAUTH_SECRET
+        - action: BLOCK
+          secretType: STRIPE_API_KEY
+        - action: BLOCK
+          secretType: TWO_FACTOR_TOKEN
+        - action: DETECT
+          secretType: US_GOVERNMENT_IDS
+        anonymization: NONE
+        defaultAction: DETECT
+    - detector: toxicity
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.87
+    outputDetectorPolicies:
+    - detector: brand_and_reputation_risk
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.85
+    - detector: code
+      enabled: true
+      severity: LOW
+      configuration:
+        languages:
+        - action: DETECT
+          language: C
+        - action: DETECT
+          language: C#
+        - action: DETECT
+          language: C++
+        - action: DETECT
+          language: CLI Command
+        - action: DETECT
+          language: COBOL
+        - action: DETECT
+          language: DB Logs
+        - action: DETECT
+          language: Erlang
+        - action: DETECT
+          language: Fortran
+        - action: DETECT
+          language: Go
+        - action: DETECT
+          language: Java
+        - action: DETECT
+          language: JavaScript
+        - action: DETECT
+          language: Kotlin
+        - action: DETECT
+          language: Lua
+        - action: DETECT
+          language: Mathematica/Wolfram Language
+        - action: DETECT
+          language: PHP
+        - action: DETECT
+          language: Pascal
+        - action: DETECT
+          language: Perl
+        - action: DETECT
+          language: Python
+        - action: DETECT
+          language: R
+        - action: DETECT
+          language: Ruby
+        - action: DETECT
+          language: Rust
+        - action: DETECT
+          language: Scala
+        - action: DETECT
+          language: SQL
+        - action: DETECT
+          language: Swift
+        - action: DETECT
+          language: Visual Basic .NET
+        - action: DETECT
+          language: jq
+        threshold: 0.6
+        defaultAction: DETECT
+    - detector: finance_advice
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.3
+    - detector: gibberish
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.9
+    - detector: intellectual_property
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.7
+        sensitiveContext: 'AI
+
+          Banking'
+    - detector: invisible_text
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+    - detector: language
+      enabled: true
+      severity: LOW
+      configuration:
+        languages:
+        - action: DETECT
+          languageCode: ar
+        - action: DETECT
+          languageCode: bg
+        - action: DETECT
+          languageCode: zh
+        - action: DETECT
+          languageCode: nl
+        - action: DETECT
+          languageCode: en
+        - action: DETECT
+          languageCode: fr
+        - action: DETECT
+          languageCode: de
+        - action: DETECT
+          languageCode: el
+        - action: DETECT
+          languageCode: hi
+        - action: DETECT
+          languageCode: it
+        - action: DETECT
+          languageCode: ja
+        - action: DETECT
+          languageCode: pl
+        - action: DETECT
+          languageCode: pt
+        - action: DETECT
+          languageCode: ru
+        - action: DETECT
+          languageCode: es
+        - action: DETECT
+          languageCode: th
+        - action: DETECT
+          languageCode: tr
+        - action: DETECT
+          languageCode: ur
+        - action: DETECT
+          languageCode: vi
+        threshold: 0.6
+        defaultAction: DETECT
+    - detector: legal_advice
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.86
+    - detector: malicious_url
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+    - detector: personal_data
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.8
+    - detector: pii
+      enabled: true
+      severity: LOW
+      configuration:
+        entities:
+        - action: DETECT
+          entityType: CREDIT_CARD
+        - action: DETECT
+          entityType: EMAIL_ADDRESS
+        - action: DETECT
+          entityType: IP_ADDRESS
+        - action: DETECT
+          entityType: PHONE_NUMBER
+        - action: DETECT
+          entityType: IBAN_CODE
+        - action: DETECT
+          entityType: US_BANK_NUMBER
+        - action: DETECT
+          entityType: US_ITIN
+        - action: DETECT
+          entityType: US_PASSPORT
+        - action: DETECT
+          entityType: US_SSN
+        - action: DETECT
+          entityType: SWIFT_CODE
+        - action: DETECT
+          entityType: DATE_OF_BIRTH
+        - action: DETECT
+          entityType: CRYPTO
+        - action: DETECT
+          entityType: LOCATION
+        - action: DETECT
+          entityType: PERSON
+        - action: DETECT
+          entityType: US_DRIVER_LICENSE
+        - action: DETECT
+          entityType: DATE_TIME
+        - action: DETECT
+          entityType: URL
+        - action: DETECT
+          entityType: MEDICAL_LICENSE
+        - action: DETECT
+          entityType: STREET_ADDRESS
+        - action: DETECT
+          entityType: US_DEA_NUMBER
+        - action: DETECT
+          entityType: JP_MY_NUMBER
+        - action: DETECT
+          entityType: JP_PASSPORT
+        threshold: 0.5
+        anonymization: NONE
+        defaultAction: DETECT
+        replaceWithMaskedContent: false
+    - detector: pii_deepscan
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.87
+    - detector: refusal
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+    - detector: response_tags
+      enabled: true
+      severity: LOW
+      configuration:
+        tags:
+        - tag: ART_AND_CULTURE
+          action: DETECT
+        - tag: MEDIA_AND_COMMUNICATIONS
+          action: DETECT
+        - tag: EDUCATION_AND_TRAINING
+          action: DETECT
+        - tag: GOVERNMENT_AND_POLITICS
+          action: DETECT
+        - tag: JOBS_EMPLOYMENT_HR
+          action: DETECT
+        - tag: SHOPPING_AND_RETAIL
+          action: DETECT
+        - tag: SCIENCE_AND_TECHNOLOGY
+          action: DETECT
+        - tag: TRAVEL
+          action: DETECT
+        - tag: RELIGION
+          action: DETECT
+        - tag: MARKETING
+          action: DETECT
+        - tag: CUSTOMER_SERVICE
+          action: DETECT
+        threshold: 0.5
+        defaultAction: DETECT
+    - detector: secrets
+      enabled: true
+      severity: LOW
+      configuration:
+        secretTypes:
+        - action: DETECT
+          secretType: AMAZON_MWS_AUTH_TOKEN
+        - action: DETECT
+          secretType: GITHUB_TOKEN
+        - action: DETECT
+          secretType: GOOGLE_API_KEY
+        - action: DETECT
+          secretType: GOOGLE_OAUTH_ACCESS_TOKEN
+        - action: DETECT
+          secretType: JWT_TOKEN
+        - action: DETECT
+          secretType: PAYPAL_BRAINTREE_ACCESS_TOKEN
+        - action: DETECT
+          secretType: PICATIC_API_KEY
+        - action: DETECT
+          secretType: PAN_BASED_CARDS
+        - action: DETECT
+          secretType: PRIVATE_KEY
+        - action: DETECT
+          secretType: SENDGRID_API_KEY
+        - action: DETECT
+          secretType: SLACK_ACCESS_TOKEN
+        - action: DETECT
+          secretType: SLACK_WEBHOOK
+        - action: DETECT
+          secretType: SQUARE_ACCESS_TOKEN
+        - action: DETECT
+          secretType: SQUARE_OAUTH_SECRET
+        - action: DETECT
+          secretType: STRIPE_API_KEY
+        - action: DETECT
+          secretType: TWO_FACTOR_TOKEN
+        - action: DETECT
+          secretType: US_GOVERNMENT_IDS
+        anonymization: NONE
+        defaultAction: DETECT
+    - detector: toxicity
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+        threshold: 0.87
+    - detector: url_reachability
+      enabled: true
+      severity: LOW
+      configuration:
+        action: DETECT
+    description: ''
+  policy_match_rules:
+  - name: AI Lab Policy
+    enabled: true
+    ruleOrder: 1
+    matchCriteria:
+      zsUsers:
+      - john@zdemo.ca
+      - jane@zdemo.ca
+      llmProviders:
+      - llmProvider: Anthropic
+        llmProviderModels: []
+      - llmProvider: Google Gemini
+        llmProviderModels: []
+      userGroups: []
+      type: USER
+    target_policy_name: AI Lab Policy - Users
+  - name: 'OpenAI '
+    enabled: true
+    ruleOrder: 2
+    matchCriteria:
+      zsUsers: []
+      llmProviders:
+      - llmProvider: OpenAI
+        llmProviderModels: []
+      userGroups: []
+      type: USER
+    target_policy_name: AI Guard Users Inspection
+  - name: CoPilot
+    enabled: true
+    ruleOrder: 3
+    matchCriteria:
+      zsUsers: []
+      llmProviders:
+      - llmProvider: GitHub Copilot
+        llmProviderModels: []
+      - llmProvider: Microsoft Copilot
+        llmProviderModels: []
+      - llmProvider: Microsoft 365 Copilot
+        llmProviderModels: []
+      userGroups:
+      - groupId: 146669326
+        groupName: All Users
+      - groupId: 130033192
+        groupName: d-Employes
+      type: USER
+    target_policy_name: AI Guard Users Inspection
+  - name: Gemini All AI
+    enabled: true
+    ruleOrder: 4
+    matchCriteria:
+      zsUsers: []
+      llmProviders:
+      - llmProvider: Google Gemini Workspace
+        llmProviderModels: []
+      - llmProvider: Google Vertex Studio
+        llmProviderModels: []
+      - llmProvider: Google Gemini Enterprise
+        llmProviderModels: []
+      - llmProvider: Google Gemini Code
+        llmProviderModels: []
+      - llmProvider: Google Gemini
+        llmProviderModels: []
+      userGroups: []
+      type: USER
+    target_policy_name: AI Guard Users Inspection
+  - name: Perplexity
+    enabled: true
+    ruleOrder: 5
+    matchCriteria:
+      zsUsers: []
+      llmProviders:
+      - llmProvider: PerplexityAI
+        llmProviderModels: []
+      userGroups: []
+      type: USER
+    target_policy_name: AI Guard Users Inspection
+  - name: Anthropic
+    enabled: true
+    ruleOrder: 6
+    matchCriteria:
+      zsUsers: []
+      llmProviders:
+      - llmProvider: Bedrock-Anthropic
+        llmProviderModels: []
+      - llmProvider: Anthropic
+        llmProviderModels: []
+      userGroups: []
+      type: USER
+    target_policy_name: AI Guard Users Inspection
+  - name: xAI - Grok
+    enabled: true
+    ruleOrder: 7
+    matchCriteria:
+      zsUsers: []
+      llmProviders:
+      - llmProvider: xAI
+        llmProviderModels: []
+      userGroups: []
+      type: USER
+    target_policy_name: AI Guard Users Inspection
+  - name: DAS Policy
+    enabled: true
+    ruleOrder: 8
+    matchCriteria:
+      llmApplications:
+      - target_llm_application_name: AI-CHATBOT-ZDEMO
+        target_llm_credential_names:
+        - '2482'
+      sourceIpAddresses: []
+      applicationGroups:
+      - groupId: 0
+        groupName: All Applications
+      customRequestHeaders: []
+      type: DAS_APPLICATION
+    target_policy_name: DAS Policy
+  - name: All Other AI
+    enabled: true
+    ruleOrder: 8
+    matchCriteria:
+      zsUsers: []
+      llmProviders: []
+      userGroups:
+      - groupId: 0
+        groupName: All Users
+      type: USER
+    target_policy_name: AI Guard Users Inspection
+  llm_applications:
+  - name: AI-CHATBOT-ZDEMO
+    ownerEmail: elebel@zscaler.com
+    applicationSettings:
+      includeEventContents: true
+      encryptEventContents: false
+  - name: AI Runtime - Macbook
+    ownerEmail: eleble@zscaler.com
+    applicationSettings:
+      includeEventContents: true
+      encryptEventContents: false
+  - name: Gemini Access
+    applicationSettings:
+      includeEventContents: true
+      encryptEventContents: false
+  llm_application_credentials:
+  - providerId: 29861
+    providerCredentialsId: 762
+    name: AI Runtime Key
+    mode: PROXY
+    target_llm_application_name: AI Runtime - Macbook
+  - providerId: 29861
+    providerCredentialsId: 762
+    name: My AI Guard App
+    mode: PROXY
+    target_llm_application_name: Gemini Access
+  - providerId: 29861
+    providerCredentialsId: 762
+    name: My AI take 2
+    mode: PROXY
+    target_llm_application_name: Gemini Access

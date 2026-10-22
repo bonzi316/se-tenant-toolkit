@@ -374,6 +374,87 @@ def scan_forwarding_rules(client, prefix, pattern_re, rule_label=None):
         print(f"  [EXCEPTION] Forwarding Control scan failed: {e}")
     return rules
 
+def scan_aiguard_policies(client, prefix, pattern_re):
+    print("Scanning AI Guard Policies...")
+    items = []
+    if not hasattr(client, 'aiguard'):
+        print("  [WARNING] Zscaler SDK version does not support AI Guard. Upgrade to >= 1.11.2")
+        return items
+    try:
+        policies_resp = client.aiguard.policies.list_policies()
+        policies = policies_resp if not isinstance(policies_resp, tuple) else policies_resp[0]
+        for p in policies or []:
+            p_dict = p.as_dict() if hasattr(p, "as_dict") else dict(p)
+            p_name = p_dict.get("name", "")
+            p_id = p_dict.get("id")
+            if should_delete(p_name, prefix, pattern_re):
+                items.append({'type': 'AI Guard Policy', 'id': p_id, 'name': p_name})
+    except Exception as e:
+        if "401 Unauthorized" in str(e):
+            print("  [WARNING] Could not scan AI Guard Policies: 401 Unauthorized (Check API role permissions)")
+        else:
+            print(f'  [EXCEPTION] Error scanning AI Guard Policies: {e}')
+    return items
+
+def scan_aiguard_rules(client, prefix, pattern_re):
+    print("Scanning AI Guard Match Rules...")
+    items = []
+    if not hasattr(client, 'aiguard'):
+        return items
+    try:
+        rules_resp = client.aiguard.policy_match_rules.list_rules()
+        rules = rules_resp if not isinstance(rules_resp, tuple) else rules_resp[0]
+        for r in rules or []:
+            r_dict = r.as_dict() if hasattr(r, "as_dict") else dict(r)
+            r_name = r_dict.get("name", "")
+            r_id = r_dict.get("id")
+            if should_delete(r_name, prefix, pattern_re):
+                items.append({'type': 'AI Guard Match Rule', 'id': r_id, 'name': r_name})
+    except Exception as e:
+        if "401 Unauthorized" in str(e):
+            pass # already warned in policies
+        else:
+            print(f'  [EXCEPTION] Error scanning AI Guard Match Rules: {e}')
+    return items
+
+def scan_aiguard_llm_apps(client, prefix, pattern_re):
+    print("Scanning AI Guard LLM Applications...")
+    items = []
+    if not hasattr(client, 'aiguard'):
+        return items
+    try:
+        apps_resp = client.aiguard.llm_applications.list_applications()
+        apps = apps_resp if not isinstance(apps_resp, tuple) else apps_resp[0]
+        for a in apps or []:
+            a_dict = a.as_dict() if hasattr(a, "as_dict") else dict(a)
+            a_name = a_dict.get("name", "")
+            a_id = a_dict.get("id")
+            if should_delete(a_name, prefix, pattern_re):
+                items.append({'type': 'AI Guard LLM App', 'id': a_id, 'name': a_name})
+    except Exception as e:
+        if "401 Unauthorized" not in str(e):
+            print(f'  [EXCEPTION] Error scanning AI Guard LLM Applications: {e}')
+    return items
+
+def scan_aiguard_llm_creds(client, prefix, pattern_re):
+    print("Scanning AI Guard LLM Application Credentials...")
+    items = []
+    if not hasattr(client, 'aiguard'):
+        return items
+    try:
+        creds_resp = client.aiguard.llm_application_credentials.list_credentials()
+        creds = creds_resp if not isinstance(creds_resp, tuple) else creds_resp[0]
+        for c in creds or []:
+            c_dict = c.as_dict() if hasattr(c, "as_dict") else dict(c)
+            c_name = c_dict.get("name", "")
+            c_id = c_dict.get("id")
+            if should_delete(c_name, prefix, pattern_re):
+                items.append({'type': 'AI Guard LLM Credential', 'id': c_id, 'name': c_name})
+    except Exception as e:
+        if "401 Unauthorized" not in str(e):
+            print(f'  [EXCEPTION] Error scanning AI Guard LLM Application Credentials: {e}')
+    return items
+
 def scan_zpa_access_rules(client, prefix, pattern_re):
     print("Scanning ZPA Access Rules...")
     items = []
@@ -541,7 +622,7 @@ def main():
     )
     parser.add_argument(
         "-m", "--modules",
-        help="Comma-separated list of modules to clean (choices: app-profiles, fwd-profiles, url-rules, casb-rules, ssl-rules, file-rules, url-cat, ip-dest-groups, ip-src-groups, firewall-rules, dns-rules, trusted-networks, root-certs, proxies, proxy-gws, fwd-rules, pac-files, rule-labels, zpa-access-rules, zpa-timeout-rules, zpa-fwd-rules, zpa-app-segments, zpa-segment-groups, zpa-server-groups, zpa-conn-groups, zpa-dns-domains)"
+        help="Comma-separated list of modules to clean (choices: app-profiles, fwd-profiles, url-rules, casb-rules, ssl-rules, file-rules, url-cat, ip-dest-groups, ip-src-groups, firewall-rules, dns-rules, trusted-networks, root-certs, proxies, proxy-gws, fwd-rules, pac-files, rule-labels, zpa-access-rules, zpa-timeout-rules, zpa-fwd-rules, zpa-app-segments, zpa-segment-groups, zpa-server-groups, zpa-conn-groups, zpa-dns-domains, aiguard-rules, aiguard-policies, aiguard-apps, aiguard-creds)"
     )
     parser.add_argument(
         "--rule-label",
@@ -562,6 +643,11 @@ def main():
         "--zpa",
         action="store_true",
         help="Scan all ZPA modules"
+    )
+    parser.add_argument(
+        "--aiguard",
+        action="store_true",
+        help="Scan all AI Guard modules"
     )
     parser.add_argument(
         "-a", "--activate",
@@ -585,11 +671,11 @@ def main():
     # Load environment variables
     load_env_file(args.env_file)
 
-    # Determine modules to clean
     ZIA_MODULES = ["url-rules", "casb-rules", "ssl-rules", "file-rules", "url-cat", "ip-dest-groups", "ip-src-groups", "firewall-rules", "dns-rules", "root-certs", "proxies", "proxy-gws", "fwd-rules", "pac-files", "rule-labels"]
+    AIGUARD_MODULES = ["aiguard-rules", "aiguard-policies", "aiguard-apps", "aiguard-creds"]
     ZCC_MODULES = ["app-profiles", "fwd-profiles", "trusted-networks"]
     ZPA_MODULES = ["zpa-access-rules", "zpa-timeout-rules", "zpa-fwd-rules", "zpa-app-segments", "zpa-segment-groups", "zpa-server-groups", "zpa-conn-groups", "zpa-dns-domains"]
-    all_valid_modules = ZIA_MODULES + ZCC_MODULES + ZPA_MODULES
+    all_valid_modules = ZIA_MODULES + AIGUARD_MODULES + ZCC_MODULES + ZPA_MODULES
 
     modules = set()
     if args.modules:
@@ -605,6 +691,8 @@ def main():
         modules.update(ZCC_MODULES)
     if args.zpa:
         modules.update(ZPA_MODULES)
+    if args.aiguard:
+        modules.update(AIGUARD_MODULES)
 
     if not modules:
         modules = set(all_valid_modules)
@@ -630,6 +718,14 @@ def main():
         items_to_delete.extend(scan_app_profiles(client, args.prefix, pattern_re))
     if "fwd-profiles" in modules:
         items_to_delete.extend(scan_forwarding_profiles(client, args.prefix, pattern_re))
+    if "aiguard-rules" in modules:
+        items_to_delete.extend(scan_aiguard_rules(client, args.prefix, pattern_re))
+    if "aiguard-policies" in modules:
+        items_to_delete.extend(scan_aiguard_policies(client, args.prefix, pattern_re))
+    if "aiguard-apps" in modules:
+        items_to_delete.extend(scan_aiguard_llm_apps(client, args.prefix, pattern_re))
+    if "aiguard-creds" in modules:
+        items_to_delete.extend(scan_aiguard_llm_creds(client, args.prefix, pattern_re))
     if "url-rules" in modules:
         items_to_delete.extend(scan_url_filtering(client, args.prefix, pattern_re, args.rule_label))
     if "casb-rules" in modules:
@@ -691,6 +787,11 @@ def main():
         "ZPA Conn Group": 5,
         "ZPA DNS Domain": 1,
         
+        "AI Guard Match Rule": 1,
+        "AI Guard Policy": 2,
+        "AI Guard LLM Credential": 3,
+        "AI Guard LLM App": 4,
+
         "ZIA URL Category": 30,
         "IP Destination Group": 30,
         "IP Source Group": 30,
@@ -856,6 +957,22 @@ def main():
                     if isinstance(body, list):
                         new_domains = [{"domain": d.get("domain")} for d in body if d.get("domain") != item_id]
                         _, _, err = client.zpa.customer_domain.add_update_domain(type="SEARCH_SUFFIX", domain_list=new_domains)
+            elif item_type == "AI Guard Match Rule":
+                res = client.aiguard.policy_match_rules.delete_rule(int(item_id))
+                if isinstance(res, tuple) and len(res) == 2:
+                    _, err = res
+            elif item_type == "AI Guard Policy":
+                res = client.aiguard.policies.delete_policy(int(item_id), delete_references=True)
+                if isinstance(res, tuple) and len(res) == 2:
+                    _, err = res
+            elif item_type == "AI Guard LLM Credential":
+                res = client.aiguard.llm_application_credentials.delete_credential(int(item_id))
+                if isinstance(res, tuple) and len(res) == 2:
+                    _, err = res
+            elif item_type == "AI Guard LLM App":
+                res = client.aiguard.llm_applications.delete_application(int(item_id))
+                if isinstance(res, tuple) and len(res) == 2:
+                    _, err = res
             
             if err:
                 print(f"  [ERROR] Deletion failed: {err}")

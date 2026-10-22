@@ -11,6 +11,7 @@ A Python CLI tool built for Zscaler Admins to automate the full configuration of
 - **ZCC Automation** — Configure Forwarding Profiles (Tunnel 2.0, TLS/DTLS, PAC), App Profiles, and Trusted Networks
 - **ZIA Automation** — Deploy URL Categories, SSL Inspection, URL Filtering, Cloud App Control, Firewall, and DNS policies; manage PAC files
 - **ZPA Automation** — Create Connector Groups, Server Groups, Segment Groups, and wildcard App Segments with Access Policies
+- **AI Guard Automation** — Export and Deploy AI Guard Policies, Match Rules, LLM Applications, and LLM Credentials seamlessly across tenants
 - **Idempotent** — Safe to run repeatedly; existing resources are updated, not duplicated
 - **Dry-Run Mode** — Preview all changes before touching any tenant
 - **Scoped Execution** — Target a specific section (e.g. `--scope zcc.forwarding_profiles`) without running the full playbook
@@ -35,6 +36,7 @@ zscaler-pov-toolkit/
     ├── zcc.py               # ZCC handlers (Forwarding & App Profiles)
     ├── zia.py               # ZIA handlers (Policies, PAC, Categories)
     ├── zpa.py               # ZPA handlers (App Segments, Groups, Policies)
+    ├── aiguard.py           # AI Guard handlers (LLM Apps, Credentials, Policies, Rules)
     └── exporter.py          # Export live tenant config to YAML
 ```
 
@@ -257,42 +259,39 @@ python tenant-cleanup.py -e .env.myclient --rule-label "POV - Created Rules"
 | `--zia` | Scan all ZIA modules |
 | `--zcc` | Scan all ZCC modules |
 | `--zpa` | Scan all ZPA modules |
+| `--aiguard` | Scan all AI Guard modules |
 | `-a / --activate` | Activate ZIA configuration changes after cleanup completes (Does nothing in dry-run mode) |
 
 **Available Modules for `-m`:**
 - **ZIA**: `url-cat`, `url-rules`, `casb-rules`, `ssl-rules`, `file-rules`, `ip-dest-groups`, `ip-src-groups`, `firewall-rules`, `dns-rules`, `proxies`, `proxy-gws`, `fwd-rules`, `pac-files`, `rule-labels`
 - **ZCC**: `app-profiles`, `fwd-profiles`, `trusted-networks`, `root-certs`
 - **ZPA**: `zpa-access-rules`, `zpa-timeout-rules`, `zpa-fwd-rules`, `zpa-app-segments`, `zpa-segment-groups`, `zpa-server-groups`, `zpa-conn-groups`, `zpa-dns-domains`
+- **AI Guard**: `aiguard-rules`, `aiguard-policies`, `aiguard-apps`, `aiguard-creds`
 
 > ⚠️ **Use `-l / --list` first.** This tool permanently deletes resources matching the criteria. Default policies (e.g., `Default_Rule` in ZPA) are safely ignored and will never be deleted.
 
 ---
 
-## 🤖 AI Guard App Extractor — `zia_ai_guard_extract.py`
+## 🤖 AI Guard Config Exporter — `scratch/ai_guard_export.py`
 
-A utility script that scrapes the official Zscaler help portal to dynamically extract the list of supported AI Guard applications. 
+A utility script that extracts a complete, portable AI Guard configuration from a live Zscaler tenant into a YAML file. This generated YAML can then be imported into another tenant using the main `pov_toolkit.py`.
+
+It extracts and sanitizes:
+- **AI Guard Policies**
+- **AI Guard Match Rules** (including Reverse-Lookup resolutions for Application IDs)
+- **LLM Applications**
+- **LLM Application Credentials**
 
 ```bash
-# Ensure playwright browsers are installed (see main installation steps)
-playwright install
-
-# Extract to YAML
-python zia_ai_guard_extract.py --format yaml > ai-guard.yaml
-
-# Extract to Terraform locals
-python zia_ai_guard_extract.py --format terraform > locals.tf
+python scratch/ai_guard_export.py -e .env.myclient -o POV-AI_GUARD.yaml
 ```
 
 ### Options
 
 | Argument | Description |
 |---|---|
-| `--format` | **Required**. Output format (`yaml` or `terraform`) |
-| `--cert-url` | URL to download the proxy chain certificate |
-| `-p / --prefix` | Prefix for naming generated objects (default: `AI Guard`) |
-| `--out` | Path to write the output file directly (overwrite mode) |
-| `--append` | Path to write the output file directly (append mode) |
-| `--update-yaml` | Path to an existing YAML configuration file to intelligently update in-place |
+| `-e / --env-file` | Path to the `.env.<tenant>` credentials file **(Required)** |
+| `-o / --output` | Output file path for the exported YAML configuration (Default: `ai_guard_exported.yaml`) |
 
 ---
 

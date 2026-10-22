@@ -56,6 +56,8 @@ def setup_zpa(client: ZscalerClient, config: ZPAConfig, dry_run: bool = False) -
         found_cg = next((g for g in groups if g.name == cg_cfg.name), None)
         
         params = cg_cfg.model_dump(exclude_none=True)
+        params.pop("provisioning_key", None)
+        params.pop("provisioning_key_max_usage", None)
         # Ensure default profile properties for creation if missing
         if "enabled" not in params:
             params["enabled"] = True
@@ -71,6 +73,7 @@ def setup_zpa(client: ZscalerClient, config: ZPAConfig, dry_run: bool = False) -
             conn_groups_map[cg_cfg.name.lower()] = found_cg.id
             if dry_run:
                 logger.info(f"[DRY-RUN] Would update Connector Group '{cg_cfg.name}' (ID: {found_cg.id}) with: {params}")
+                results["connector_group"] = {"name": cg_cfg.name, "id": found_cg.id, "status": "Dry-Run Updated"}
             else:
                 _, _, err = client.zpa.app_connector_groups.update_connector_group(group_id=found_cg.id, **params)
                 if err:
@@ -90,6 +93,7 @@ def setup_zpa(client: ZscalerClient, config: ZPAConfig, dry_run: bool = False) -
             if dry_run:
                 logger.info(f"[DRY-RUN] Would create Connector Group '{cg_cfg.name}' with: {params}")
                 conn_groups_map[cg_cfg.name.lower()] = "TEMP_CG_ID"
+                results["connector_group"] = {"name": cg_cfg.name, "id": "TEMP_CG_ID", "status": "Dry-Run Created"}
             else:
                 new_cg, _, err = client.zpa.app_connector_groups.add_connector_group(**params)
                 if err:
@@ -101,7 +105,7 @@ def setup_zpa(client: ZscalerClient, config: ZPAConfig, dry_run: bool = False) -
 
         if getattr(cg_cfg, "provisioning_key", False):
             logger.info(f"Processing Provisioning Key for '{cg_cfg.name}'...")
-            cg_id = found_cg.id if found_cg else new_cg.id
+            cg_id = conn_groups_map.get(cg_cfg.name.lower())
             if dry_run:
                 logger.info(f"[DRY-RUN] Would generate provisioning key for '{cg_cfg.name}'")
                 results["connector_group"]["provisioning_key"] = "TEMP_PROV_KEY"

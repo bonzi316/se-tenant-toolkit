@@ -273,6 +273,16 @@ class ZPAConfig(BaseModel):
 
 
 # ==============================================================================
+# AIGuard Models
+# ==============================================================================
+class AIGuardConfig(BaseModel):
+    policies: Optional[List[Dict[str, Any]]] = Field(default_factory=list)
+    policy_match_rules: Optional[List[Dict[str, Any]]] = Field(default_factory=list)
+    llm_applications: Optional[List[Dict[str, Any]]] = Field(default_factory=list)
+    llm_application_credentials: Optional[List[Dict[str, Any]]] = Field(default_factory=list)
+    model_config = {"extra": "allow"}
+
+# ==============================================================================
 # Root Config Model
 # ==============================================================================
 class POVConfig(BaseModel):
@@ -280,6 +290,7 @@ class POVConfig(BaseModel):
     zcc: Optional[ZCCConfig] = None
     zia: Optional[ZIAConfig] = None
     zpa: Optional[ZPAConfig] = None
+    aiguard: Optional[AIGuardConfig] = None
 
 def load_config(filepath: str) -> POVConfig:
     """Loads and validates a POV config file in YAML format."""

@@ -1351,7 +1351,8 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                                         raise Exception("Script aborted by user.")
                                     elif user_input in ['y', 'yes']:
                                         print("Verifying App Profile exists...")
-                                        v_profiles, _, v_err = client.zcc.web_policy.list_by_company(query_params={"device_type": platform.lower()})
+                                        api_device_type = 'macos' if platform.lower() == 'mac' else platform.lower()
+                                        v_profiles, _, v_err = client.zcc.web_policy.list_by_company(query_params={"device_type": api_device_type})
                                         if not v_err and v_profiles:
                                             found_verify = next((p for p in v_profiles if getattr(p, 'name', '') and p.name.lower() == prefixed_name.lower()), None)
                                             if found_verify:
@@ -1365,7 +1366,8 @@ def setup_zcc(client: ZscalerClient, config: ZCCConfig, dry_run: bool = False, p
                                         print("Waiting for you to create it...")
                             
                         # Re-fetch profiles to get the newly created ID
-                        profiles, _, err = client.zcc.web_policy.list_by_company(query_params={"device_type": platform.lower()})
+                        api_device_type = 'macos' if platform.lower() == 'mac' else platform.lower()
+                        profiles, _, err = client.zcc.web_policy.list_by_company(query_params={"device_type": api_device_type})
                         if err:
                             raise Exception(f"Failed to list app profiles after creation: {err}")
                         
