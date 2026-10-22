@@ -1237,7 +1237,7 @@ zcc:
     - search_name: POV - No Forwarding
       update:
         name: POV - No Forwarding
-        device_type: mac
+        device_type: macos
         active: 1
         rule_order: 1
         log_mode: -1
@@ -1413,7 +1413,7 @@ zcc:
     - search_name: POV - T2.0 TLS
       update:
         name: POV - T2.0 TLS
-        device_type: mac
+        device_type: macos
         active: 1
         pac_url: POV_PAC
         rule_order: 2
@@ -1714,20 +1714,20 @@ zia:
     enableUcaasRingCentral: true
     enableUcaasWebex: true
     enableUcaasTalkdesk: true
-    enableChatGptPrompt: true
-    enableMicrosoftCoPilotPrompt: true
-    enableGeminiPrompt: true
-    enablePOEPrompt: true
-    enableMetaPrompt: true
-    enablePerPlexityPrompt: true
-    enableDeepSeekPrompt: true
-    enableWriterPrompt: true
-    enableGrokPrompt: true
-    enableMistralAIPrompt: true
-    enableClaudePrompt: true
-    enableQuillbotAIPrompt: true
-    enableGoogleAIPrompt: true
-    enableGrammarlyPrompt: true
+    enableChatGptPrompt: false
+    enableMicrosoftCoPilotPrompt: false
+    enableGeminiPrompt: false
+    enablePOEPrompt: false
+    enableMetaPrompt: false
+    enablePerPlexityPrompt: false
+    enableDeepSeekPrompt: false
+    enableWriterPrompt: false
+    enableGrokPrompt: false
+    enableMistralAIPrompt: false
+    enableClaudePrompt: false
+    enableQuillbotAIPrompt: false
+    enableGoogleAIPrompt: false
+    enableGrammarlyPrompt: false
   atp_policy:
     risk_tolerance: 35
     risk_tolerance_capture: false
