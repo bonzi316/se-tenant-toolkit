@@ -36,8 +36,8 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - claude.ai
-    - api.anthropic.com
+    - '*.claude.ai'
+    - '*.api.anthropic.com'
   - name: zGuard - Bedrock-Anthropic
     description: 'Web Browsers
 
@@ -70,7 +70,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - bolt.new
+    - '*.bolt.new'
   - name: zGuard - Builder.io
     description: 'Web Browsers
 
@@ -78,9 +78,9 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - api.builder.io
-    - cdn.builder.io
-    - cdn.builder.codes
+    - '*.api.builder.io'
+    - '*.cdn.builder.io'
+    - '*.cdn.builder.codes'
   - name: zGuard - DeepAI
     description: 'Web Browsers
 
@@ -88,7 +88,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - api.deepai.org
+    - '*.api.deepai.org'
   - name: zGuard - ElevenLabs
     description: 'Web Browsers: Text-to-speech supported
 
@@ -104,8 +104,8 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - api.gamma.app
-    - ai.api.gamma.app
+    - '*.api.gamma.app'
+    - '*.ai.api.gamma.app'
   - name: zGuard - GitHub Copilot
     description: 'Web Browsers
 
@@ -133,7 +133,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - glean.com
+    - '*.glean.com'
   - name: zGuard - Google Gemini
     description: 'Web Browsers
 
@@ -141,7 +141,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - gemini.google.com
+    - '*.gemini.google.com'
   - name: zGuard - Google Gemini Code - FQDN
     description: 'Web Browsers
 
@@ -157,7 +157,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - gemini.google.com
+    - '*.gemini.google.com'
   - name: zGuard - Google Gemini Enterprise
     description: 'Web Browsers
 
@@ -165,14 +165,14 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - biz-discoveryengine.googleapis.com
-    - content-us-discoveryengine.googleapis.com
-    - discoveryengine.clients6.google.com
-    - us-discoveryengine.clients6.google.com
-    - eu-discoveryengine.clients6.google.com
-    - global-discoveryengine.clients6.google.com
-    - us-discoveryengine.googleapis.com
-    - eu-discoveryengine.googleapis.com
+    - '*.biz-discoveryengine.googleapis.com'
+    - '*.content-us-discoveryengine.googleapis.com'
+    - '*.discoveryengine.clients6.google.com'
+    - '*.us-discoveryengine.clients6.google.com'
+    - '*.eu-discoveryengine.clients6.google.com'
+    - '*.global-discoveryengine.clients6.google.com'
+    - '*.us-discoveryengine.googleapis.com'
+    - '*.eu-discoveryengine.googleapis.com'
   - name: zGuard - Google Gemini Workspaces
     description: 'Google Suite (Docs, Slides, Sheets): "Ask Gemini" and "Generate
       document" are supported.
@@ -192,7 +192,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - grok.com
+    - '*.grok.com'
   - name: zGuard - Lovable
     description: 'Web Browsers
 
@@ -208,8 +208,8 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - api.maxai.me
-  - name: zGuard - Microsoft 365 Copilot
+    - '*.api.maxai.me'
+  - name: zGuard - Microsoft 365 Copilot - FQDN
     description: 'M365 Web Experience (Web Browser)
 
       M365 Desktop App (Windows and Mac)
@@ -234,6 +234,24 @@ zia:
     - api.individual.githubcopilot.com
     - augloop.office.com
     - www.copilot.com
+  - name: zGuard - Microsoft 365 Copilot - Wildcard
+    description: 'M365 Web Experience (Web Browser)
+
+      M365 Desktop App (Windows and Mac)
+
+      Copilot.com (Web Browser)
+
+      Copilot in Word (Desktop App and Web Browser)
+
+      Copilot in Excel (Web Browser)
+
+      Copilot in Outlook (Web Browser)
+
+
+      Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
+    type: DSTN_DOMAIN
+    addresses:
+    - '*.cloud.microsoft'
   - name: zGuard - Mistral AI
     description: 'Mistral Vibe (formerly Le Chat) backend
 
@@ -241,7 +259,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - mistral.ai
+    - '*.mistral.ai'
   - name: zGuard - Napkin AI
     description: 'Web Browsers
 
@@ -249,7 +267,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - app.napkin.ai
+    - '*.app.napkin.ai'
   - name: zGuard - NotebookLM
     description: 'Web Browsers
 
@@ -257,7 +275,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - notebooklm.google.com
+    - '*.notebooklm.google.com'
   - name: zGuard - OpenAI ChatGPT Codex
     description: 'Web Browsers
 
@@ -267,8 +285,8 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - chatgpt.com
-    - chat.openai.com
+    - '*.chatgpt.com'
+    - '*.chat.openai.com'
   - name: zGuard - OpenCode
     description: 'App
 
@@ -278,7 +296,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - opencode.ai
+    - '*.opencode.ai'
   - name: zGuard - Perplexity
     description: 'Web Browsers
 
@@ -290,7 +308,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - perplexity.ai
+    - '*.perplexity.ai'
   - name: zGuard - Quillbot
     description: 'Web Browsers
 
@@ -314,7 +332,7 @@ zia:
       Extracted from: https://help.zscaler.com/secure-ai-users/integrating-zia-ai-guard'
     type: DSTN_DOMAIN
     addresses:
-    - cloudconsole-pa.clients6.google.com
+    - '*.cloudconsole-pa.clients6.google.com'
   - name: zGuard - Windsurf
     description: 'Desktop App (Proxy Mode Only).
 
@@ -396,7 +414,8 @@ zia:
     - name: zGuard - Grok xAI
     - name: zGuard - Lovable
     - name: zGuard - MaxAI
-    - name: zGuard - Microsoft 365 Copilot
+    - name: zGuard - Microsoft 365 Copilot - FQDN
+    - name: zGuard - Microsoft 365 Copilot - Wildcard
     - name: zGuard - Mistral AI
     - name: zGuard - Napkin AI
     - name: zGuard - NotebookLM
@@ -436,7 +455,8 @@ zia:
     - name: zGuard - Grok xAI
     - name: zGuard - Lovable
     - name: zGuard - MaxAI
-    - name: zGuard - Microsoft 365 Copilot
+    - name: zGuard - Microsoft 365 Copilot - FQDN
+    - name: zGuard - Microsoft 365 Copilot - Wildcard
     - name: zGuard - Mistral AI
     - name: zGuard - Napkin AI
     - name: zGuard - NotebookLM

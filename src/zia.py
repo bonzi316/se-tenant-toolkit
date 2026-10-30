@@ -686,6 +686,20 @@ def setup_zia(client: ZscalerClient, config: ZIAConfig, dry_run: bool = False, p
             payload = dict(g_cfg)
             payload["name"] = prefixed_name
             
+            # Normalize Wildcard FQDN (DSTN_DOMAIN) addresses to '*.domain' format
+            if payload.get("type") == "DSTN_DOMAIN" and isinstance(payload.get("addresses"), list):
+                normalized_addrs = []
+                for addr in payload["addresses"]:
+                    if isinstance(addr, str):
+                        addr_str = addr.strip()
+                        if addr_str and "*" not in addr_str:
+                            addr_str = f"*.{addr_str.lstrip('.')}"
+                        if addr_str:
+                            normalized_addrs.append(addr_str)
+                    else:
+                        normalized_addrs.append(addr)
+                payload["addresses"] = normalized_addrs
+            
             # Remove read-only/metadata fields
             for k in ["id", "is_non_editable", "isNonEditable"]:
                 payload.pop(k, None)

@@ -94,7 +94,8 @@ def build_groups(records, prefix="AI Guard"):
         fqdns = []
         wildcards = []
         
-        seen = set()
+        seen_fqdns = set()
+        seen_wildcards = set()
         for d in rec["domains"]:
             d_clean = d.strip()
             if not d_clean:
@@ -105,17 +106,16 @@ def build_groups(records, prefix="AI Guard"):
             if not bare:
                 continue
                 
-            # If ZIA needs bare domain for both, we store bare but use DSTN_DOMAIN type for wildcards
-            # Some platforms prefer .domain for wildcards. ZIA accepts bare domain for DSTN_DOMAIN
-            # We will use bare domain.
+            # ZIA Wildcard FQDN (DSTN_DOMAIN) requires the '*.domain' format
             if is_wildcard:
-                if bare not in seen:
-                    wildcards.append(bare)
-                    seen.add(bare)
+                wc_entry = f"*.{bare}"
+                if wc_entry not in seen_wildcards:
+                    wildcards.append(wc_entry)
+                    seen_wildcards.add(wc_entry)
             else:
-                if bare not in seen:
+                if bare not in seen_fqdns:
                     fqdns.append(bare)
-                    seen.add(bare)
+                    seen_fqdns.add(bare)
 
         if fqdns:
             groups.append({
